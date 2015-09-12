@@ -1,0 +1,172 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ALGORITHM	ppso.cpp	13;"	d	file:
+ASSERT	ppso.cpp	24;"	d	file:
+CLSPO_createFi	ppso.cpp	/^		vector<int>CLSPO_createFi(int i){$/;"	f	class:PSO	access:public	signature:(int i)
+DefFunction	ppso.cpp	161;"	d	file:
+EndDef	ppso.cpp	165;"	d	file:
+Function	ppso.cpp	/^		Function(const char *s,double xlow,double xup,double fbest,bool isFindMin,int numDim){$/;"	f	class:Function	access:public	signature:(const char *s,double xlow,double xup,double fbest,bool isFindMin,int numDim)
+Function	ppso.cpp	/^class Function{$/;"	c	file:
+Function::Function	ppso.cpp	/^		Function(const char *s,double xlow,double xup,double fbest,bool isFindMin,int numDim){$/;"	f	class:Function	access:public	signature:(const char *s,double xlow,double xup,double fbest,bool isFindMin,int numDim)
+Function::f	ppso.cpp	/^		inline double f(const vector<double>&xs){$/;"	f	class:Function	access:public	signature:(const vector<double>&xs)
+Function::fbest	ppso.cpp	/^		double fbest;$/;"	m	class:Function	file:	access:private
+Function::feCounter	ppso.cpp	/^		int feCounter;$/;"	m	class:Function	file:	access:private
+Function::funName	ppso.cpp	/^		char funName[MAX_FUNCTION_NAME];$/;"	m	class:Function	file:	access:private
+Function::getBest	ppso.cpp	/^		double getBest()const{return fbest;}$/;"	f	class:Function	access:public	signature:() const
+Function::getIsFindMin	ppso.cpp	/^		bool getIsFindMin()const{return isFindMin;}$/;"	f	class:Function	access:public	signature:() const
+Function::getName	ppso.cpp	/^		const char *getName()const{return funName;}$/;"	f	class:Function	access:public	signature:() const
+Function::getNumDim	ppso.cpp	/^		int getNumDim()const{return numDim;}$/;"	f	class:Function	access:public	signature:() const
+Function::getRange	ppso.cpp	/^		double getRange(int botOrUp){$/;"	f	class:Function	access:public	signature:(int botOrUp)
+Function::getShortName	ppso.cpp	/^		const char *getShortName()const{return shortName;}$/;"	f	class:Function	access:public	signature:() const
+Function::getfeCounter	ppso.cpp	/^		int getfeCounter()const{return feCounter;}$/;"	f	class:Function	access:public	signature:() const
+Function::isFindMin	ppso.cpp	/^		bool isFindMin;$/;"	m	class:Function	file:	access:private
+Function::numDim	ppso.cpp	/^		int numDim;$/;"	m	class:Function	file:	access:private
+Function::operator ()	ppso.cpp	/^		virtual double operator()(const double *xs,int size){$/;"	f	class:Function	access:public	signature:(const double *xs,int size)
+Function::shortName	ppso.cpp	/^		char shortName[50];$/;"	m	class:Function	file:	access:private
+Function::u	ppso.cpp	/^		static double u(double x,double a,double k,double m){$/;"	f	class:Function	access:public	signature:(double x,double a,double k,double m)
+Function::xlow	ppso.cpp	/^		double xlow,xup;$/;"	m	class:Function	file:	access:private
+Function::xup	ppso.cpp	/^		double xlow,xup;$/;"	m	class:Function	file:	access:private
+FunctionFactory	ppso.cpp	/^		FunctionFactory(int numDim){$/;"	f	class:FunctionFactory	file:	access:private	signature:(int numDim)
+FunctionFactory	ppso.cpp	/^class FunctionFactory{$/;"	c	file:
+FunctionFactory::FunctionFactory	ppso.cpp	/^		FunctionFactory(int numDim){$/;"	f	class:FunctionFactory	file:	access:private	signature:(int numDim)
+FunctionFactory::Instance	ppso.cpp	/^		static FunctionFactory &Instance(int numDim){$/;"	f	class:FunctionFactory	access:public	signature:(int numDim)
+FunctionFactory::fs	ppso.cpp	/^		vector<Function*>fs;$/;"	m	class:FunctionFactory	file:	access:private
+FunctionFactory::getFunction	ppso.cpp	/^		Function*getFunction(int index)const{$/;"	f	class:FunctionFactory	access:public	signature:(int index) const
+FunctionFactory::getNumFunction	ppso.cpp	/^		int getNumFunction()const{$/;"	f	class:FunctionFactory	access:public	signature:() const
+FunctionFactory::instance	ppso.cpp	/^		static FunctionFactory*instance;$/;"	m	class:FunctionFactory	file:	access:private
+FunctionFactory::instance	ppso.cpp	/^FunctionFactory*FunctionFactory::instance=0;$/;"	m	class:FunctionFactory	file:
+FunctionFactory::~FunctionFactory	ppso.cpp	/^		~FunctionFactory(){$/;"	f	class:FunctionFactory	access:public	signature:()
+Instance	ppso.cpp	/^		static FunctionFactory &Instance(int numDim){$/;"	f	class:FunctionFactory	access:public	signature:(int numDim)
+MATH_EXP	ppso.cpp	22;"	d	file:
+MATH_PI	ppso.cpp	21;"	d	file:
+MAX_BUFFER	ppso.cpp	20;"	d	file:
+MAX_FUNCTION_NAME	ppso.cpp	110;"	d	file:
+NormD	ppso.cpp	/^double NormD(double u,double t){$/;"	f	signature:(double u,double t)
+NormD1	ppso.cpp	/^double NormD1(double u,double t){$/;"	f	signature:(double u,double t)
+OMPI_IMPORTS	ppso.cpp	16;"	d	file:
+PPSO	ppso.cpp	/^int PPSO(int processId,int numProcess,Function*f,vector<double>&bestX,double &bestF){$/;"	f	signature:(int processId,int numProcess,Function*f,vector<double>&bestX,double &bestF)
+PSO	ppso.cpp	/^class PSO{$/;"	c	file:
+PSO::CLSPO_createFi	ppso.cpp	/^		vector<int>CLSPO_createFi(int i){$/;"	f	class:PSO	access:public	signature:(int i)
+PSO::algorithm	ppso.cpp	/^		int algorithm;$/;"	m	class:PSO	file:	access:private
+PSO::begin	ppso.cpp	/^		void begin(Function* f){$/;"	f	class:PSO	access:public	signature:(Function* f)
+PSO::f	ppso.cpp	/^		Function *f;$/;"	m	class:PSO	file:	access:private
+PSO::fgBest	ppso.cpp	/^		vector<double>fx,fpBest,fgBest;$/;"	m	class:PSO	file:	access:private
+PSO::fpBest	ppso.cpp	/^		vector<double>fx,fpBest,fgBest;$/;"	m	class:PSO	file:	access:private
+PSO::fx	ppso.cpp	/^		vector<double>fx,fpBest,fgBest;$/;"	m	class:PSO	file:	access:private
+PSO::gBest	ppso.cpp	/^		vector<vector<double> >v,x,pBest,gBest;$/;"	m	class:PSO	file:	access:private
+PSO::getAlgorithmName	ppso.cpp	/^		const char *getAlgorithmName(){$/;"	f	class:PSO	access:public	signature:()
+PSO::getNumP	ppso.cpp	/^		int getNumP()const{return numP;}$/;"	f	class:PSO	access:public	signature:() const
+PSO::getOutput	ppso.cpp	/^		void getOutput(vector<double>&bestX,double &bestF){$/;"	f	class:PSO	access:public	signature:(vector<double>&bestX,double &bestF)
+PSO::init	ppso.cpp	/^		void init(int algorithm,int numP){$/;"	f	class:PSO	access:public	signature:(int algorithm,int numP)
+PSO::isFBetter	ppso.cpp	/^		bool isFBetter(double fx1,double fx2){$/;"	f	class:PSO	access:public	signature:(double fx1,double fx2)
+PSO::isFindMin	ppso.cpp	/^		bool isFindMin;$/;"	m	class:PSO	file:	access:private
+PSO::numDim	ppso.cpp	/^		int numDim;$/;"	m	class:PSO	file:	access:private
+PSO::numP	ppso.cpp	/^		int numP;$/;"	m	class:PSO	file:	access:private
+PSO::pBest	ppso.cpp	/^		vector<vector<double> >v,x,pBest,gBest;$/;"	m	class:PSO	file:	access:private
+PSO::popInit	ppso.cpp	/^		void popInit(){$/;"	f	class:PSO	access:public	signature:()
+PSO::replaceParticle	ppso.cpp	/^		void replaceParticle(int i,vector<double>&bestX,double &bestF){$/;"	f	class:PSO	access:public	signature:(int i,vector<double>&bestX,double &bestF)
+PSO::solve	ppso.cpp	/^		void solve(Function* f,int maxGeneration,vector<double>&bestX,double &bestF){$/;"	f	class:PSO	access:public	signature:(Function* f,int maxGeneration,vector<double>&bestX,double &bestF)
+PSO::update	ppso.cpp	/^		void update(int maxGeneration){$/;"	f	class:PSO	access:public	signature:(int maxGeneration)
+PSO::updateGBest	ppso.cpp	/^		void updateGBest(){$/;"	f	class:PSO	access:public	signature:()
+PSO::updateX	ppso.cpp	/^		void updateX(int g,int maxGeneration){$/;"	f	class:PSO	access:public	signature:(int g,int maxGeneration)
+PSO::v	ppso.cpp	/^		vector<vector<double> >v,x,pBest,gBest;$/;"	m	class:PSO	file:	access:private
+PSO::x	ppso.cpp	/^		vector<vector<double> >v,x,pBest,gBest;$/;"	m	class:PSO	file:	access:private
+Test	ppso.cpp	25;"	d	file:
+Tic	ppso.cpp	/^		Tic(){}$/;"	f	class:Tic	file:	access:private	signature:()
+Tic	ppso.cpp	/^class Tic{$/;"	c	file:
+Tic::Tic	ppso.cpp	/^		Tic(){}$/;"	f	class:Tic	file:	access:private	signature:()
+Tic::dtic	ppso.cpp	/^		inline static double dtic(){$/;"	f	class:Tic	access:public	signature:()
+Tic::getTimeMs	ppso.cpp	/^		inline static long getTimeMs(){$/;"	f	class:Tic	file:	access:private	signature:()
+Tic::lastTime	ppso.cpp	/^		static long lastTime;$/;"	m	class:Tic	file:	access:private
+Tic::lastTime	ppso.cpp	/^long Tic::lastTime=0;$/;"	m	class:Tic	file:
+Tic::mtic	ppso.cpp	/^		static long mtic(){$/;"	f	class:Tic	access:public	signature:()
+Tic::test	ppso.cpp	/^		static void test(){$/;"	f	class:Tic	access:public	signature:()
+Tic::tic	ppso.cpp	/^		static void tic(const char *tag="begin"){$/;"	f	class:Tic	access:public	signature:(const char *tag=Ó)
+Trace	ppso.cpp	23;"	d	file:
+algorithm	ppso.cpp	/^		int algorithm;$/;"	m	class:PSO	file:	access:private
+begin	ppso.cpp	/^		void begin(Function* f){$/;"	f	class:PSO	access:public	signature:(Function* f)
+calStatistics	ppso.cpp	/^void calStatistics(const vector<double>&arr,double &min,double &max,double &mean,double &std){$/;"	f	signature:(const vector<double>&arr,double &min,double &max,double &mean,double &std)
+drand	ppso.cpp	/^double drand(){$/;"	f	signature:()
+drand	ppso.cpp	/^double drand(double min,double max){$/;"	f	signature:(double min,double max)
+dtic	ppso.cpp	/^		inline static double dtic(){$/;"	f	class:Tic	access:public	signature:()
+f	ppso.cpp	/^		Function *f;$/;"	m	class:PSO	file:	access:private
+f	ppso.cpp	/^		inline double f(const vector<double>&xs){$/;"	f	class:Function	access:public	signature:(const vector<double>&xs)
+fbest	ppso.cpp	/^		double fbest;$/;"	m	class:Function	file:	access:private
+feCounter	ppso.cpp	/^		int feCounter;$/;"	m	class:Function	file:	access:private
+fgBest	ppso.cpp	/^		vector<double>fx,fpBest,fgBest;$/;"	m	class:PSO	file:	access:private
+fpBest	ppso.cpp	/^		vector<double>fx,fpBest,fgBest;$/;"	m	class:PSO	file:	access:private
+fs	ppso.cpp	/^		vector<Function*>fs;$/;"	m	class:FunctionFactory	file:	access:private
+funName	ppso.cpp	/^		char funName[MAX_FUNCTION_NAME];$/;"	m	class:Function	file:	access:private
+fx	ppso.cpp	/^		vector<double>fx,fpBest,fgBest;$/;"	m	class:PSO	file:	access:private
+gBest	ppso.cpp	/^		vector<vector<double> >v,x,pBest,gBest;$/;"	m	class:PSO	file:	access:private
+getAlgorithmName	ppso.cpp	/^		const char *getAlgorithmName(){$/;"	f	class:PSO	access:public	signature:()
+getAlgorithmName	ppso.cpp	/^const char *getAlgorithmName(int algorithm){$/;"	f	signature:(int algorithm)
+getBest	ppso.cpp	/^		double getBest()const{return fbest;}$/;"	f	class:Function	access:public	signature:() const
+getFunction	ppso.cpp	/^		Function*getFunction(int index)const{$/;"	f	class:FunctionFactory	access:public	signature:(int index) const
+getIsFindMin	ppso.cpp	/^		bool getIsFindMin()const{return isFindMin;}$/;"	f	class:Function	access:public	signature:() const
+getName	ppso.cpp	/^		const char *getName()const{return funName;}$/;"	f	class:Function	access:public	signature:() const
+getNumDim	ppso.cpp	/^		int getNumDim()const{return numDim;}$/;"	f	class:Function	access:public	signature:() const
+getNumFunction	ppso.cpp	/^		int getNumFunction()const{$/;"	f	class:FunctionFactory	access:public	signature:() const
+getNumP	ppso.cpp	/^		int getNumP()const{return numP;}$/;"	f	class:PSO	access:public	signature:() const
+getOutput	ppso.cpp	/^		void getOutput(vector<double>&bestX,double &bestF){$/;"	f	class:PSO	access:public	signature:(vector<double>&bestX,double &bestF)
+getRange	ppso.cpp	/^		double getRange(int botOrUp){$/;"	f	class:Function	access:public	signature:(int botOrUp)
+getShortName	ppso.cpp	/^		const char *getShortName()const{return shortName;}$/;"	f	class:Function	access:public	signature:() const
+getTimeMs	ppso.cpp	/^		inline static long getTimeMs(){$/;"	f	class:Tic	file:	access:private	signature:()
+getfeCounter	ppso.cpp	/^		int getfeCounter()const{return feCounter;}$/;"	f	class:Function	access:public	signature:() const
+init	ppso.cpp	/^		void init(int algorithm,int numP){$/;"	f	class:PSO	access:public	signature:(int algorithm,int numP)
+instance	ppso.cpp	/^		static FunctionFactory*instance;$/;"	m	class:FunctionFactory	file:	access:private
+instance	ppso.cpp	/^FunctionFactory*FunctionFactory::instance=0;$/;"	m	class:FunctionFactory	file:
+isFBetter	ppso.cpp	/^		bool isFBetter(double fx1,double fx2){$/;"	f	class:PSO	access:public	signature:(double fx1,double fx2)
+isFindMin	ppso.cpp	/^		bool isFindMin;$/;"	m	class:Function	file:	access:private
+isFindMin	ppso.cpp	/^		bool isFindMin;$/;"	m	class:PSO	file:	access:private
+lastTime	ppso.cpp	/^		static long lastTime;$/;"	m	class:Tic	file:	access:private
+lastTime	ppso.cpp	/^long Tic::lastTime=0;$/;"	m	class:Tic	file:
+main	ppso.cpp	/^int main(){$/;"	f	signature:()
+mtic	ppso.cpp	/^		static long mtic(){$/;"	f	class:Tic	access:public	signature:()
+mul	ppso.cpp	/^	double mul=1.0;$/;"	v
+mulcos	ppso.cpp	/^	double mulcos=1.0;$/;"	v
+numDim	ppso.cpp	/^		int numDim;$/;"	m	class:Function	file:	access:private
+numDim	ppso.cpp	/^		int numDim;$/;"	m	class:PSO	file:	access:private
+numP	ppso.cpp	/^		int numP;$/;"	m	class:PSO	file:	access:private
+old_main	ppso.cpp	/^int old_main(int argc,char *argv[]){$/;"	f	signature:(int argc,char *argv[])
+operator ()	ppso.cpp	/^		virtual double operator()(const double *xs,int size){$/;"	f	class:Function	access:public	signature:(const double *xs,int size)
+pBest	ppso.cpp	/^		vector<vector<double> >v,x,pBest,gBest;$/;"	m	class:PSO	file:	access:private
+popInit	ppso.cpp	/^		void popInit(){$/;"	f	class:PSO	access:public	signature:()
+printArr	ppso.cpp	/^void printArr(int *arr,int size){$/;"	f	signature:(int *arr,int size)
+printVec	ppso.cpp	/^void printVec(const vector<T>&arr){$/;"	f	signature:(const vector<T>&arr)
+rd	ppso.cpp	37;"	d	file:
+replaceParticle	ppso.cpp	/^		void replaceParticle(int i,vector<double>&bestX,double &bestF){$/;"	f	class:PSO	access:public	signature:(int i,vector<double>&bestX,double &bestF)
+res	ppso.cpp	/^	double res=0.0;$/;"	v
+res	ppso.cpp	/^	double res=fabs(xs[0]);$/;"	v
+runPPSO	ppso.cpp	/^vector<double> runPPSO(int id,int idSize,Function*f,int maxRun){$/;"	f	signature:(int id,int idSize,Function*f,int maxRun)
+runSerialPSO	ppso.cpp	/^vector<double> runSerialPSO(PSO &pso,Function*f,int maxRun){$/;"	f	signature:(PSO &pso,Function*f,int maxRun)
+sampleNormal	ppso.cpp	/^double sampleNormal() {$/;"	f	signature:()
+shortName	ppso.cpp	/^		char shortName[50];$/;"	m	class:Function	file:	access:private
+solve	ppso.cpp	/^		void solve(Function* f,int maxGeneration,vector<double>&bestX,double &bestF){$/;"	f	class:PSO	access:public	signature:(Function* f,int maxGeneration,vector<double>&bestX,double &bestF)
+sum	ppso.cpp	/^	double sum=0.0;$/;"	v
+sumcosx	ppso.cpp	/^	double sumcosx=0.0;$/;"	v
+sumu	ppso.cpp	/^	double sumu=0.0;$/;"	v
+sumx	ppso.cpp	/^	double sumx=0.0;$/;"	v
+sumx2	ppso.cpp	/^	double sumx2=0.0;$/;"	v
+sumy	ppso.cpp	/^	double sumy=0.0;$/;"	v
+test	ppso.cpp	/^		static void test(){$/;"	f	class:Tic	access:public	signature:()
+tic	ppso.cpp	/^		static void tic(const char *tag="begin"){$/;"	f	class:Tic	access:public	signature:(const char *tag=Ó)
+u	ppso.cpp	/^		static double u(double x,double a,double k,double m){$/;"	f	class:Function	access:public	signature:(double x,double a,double k,double m)
+unused_main1	ppso.cpp	/^int unused_main1(int argc,char *argv[]){$/;"	f	signature:(int argc,char *argv[])
+update	ppso.cpp	/^		void update(int maxGeneration){$/;"	f	class:PSO	access:public	signature:(int maxGeneration)
+updateGBest	ppso.cpp	/^		void updateGBest(){$/;"	f	class:PSO	access:public	signature:()
+updateX	ppso.cpp	/^		void updateX(int g,int maxGeneration){$/;"	f	class:PSO	access:public	signature:(int g,int maxGeneration)
+v	ppso.cpp	/^		vector<vector<double> >v,x,pBest,gBest;$/;"	m	class:PSO	file:	access:private
+x	ppso.cpp	/^		vector<vector<double> >v,x,pBest,gBest;$/;"	m	class:PSO	file:	access:private
+xd	ppso.cpp	/^double xd=xs[size-1];$/;"	v
+xlow	ppso.cpp	/^		double xlow,xup;$/;"	m	class:Function	file:	access:private
+xup	ppso.cpp	/^		double xlow,xup;$/;"	m	class:Function	file:	access:private
+y1	ppso.cpp	/^	double y1=1.0+(xs[0]+1.0)\/4.0;$/;"	v
+yd	ppso.cpp	/^	double yd=1.0+(xs[size-1]+1.0)\/4.0;$/;"	v
+yi	ppso.cpp	/^	double yi,yi1;$/;"	v
+yi1	ppso.cpp	/^	double yi,yi1;$/;"	v
+~FunctionFactory	ppso.cpp	/^		~FunctionFactory(){$/;"	f	class:FunctionFactory	access:public	signature:()
