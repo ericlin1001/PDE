@@ -1,0 +1,10 @@
+Runing PDE 30times.
+F	mean	std
+Tic::begin
+F1	1.60176e-144	2.90338e-144
+F3	2.06588e-27	2.33547e-27
+PDEF3	0.00265136	0.00413169
+PDEF4	0.000381827	7.27596e-13
+Tic::end used:27.824(seconds).
+end.
+

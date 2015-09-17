@@ -1,22 +1,16 @@
 outputPath=../output
-all:runPPSO runLPSO  runGPSO runBPSO runCLPSO  output
-runPPSO:PPSO
-	mpirun -np 5 ./PPSO > ppso.txt
+all:runDEs output
+runDEs:PDE
+	echo 'Run Start:'`date` > time.txt
+	mpirun -np 5 ./PDE > pde.txt
+	./DE1 > de1.txt
+	./DE2 > de2.txt
+	./DE3 > de3.txt
+	./DE4 > de4.txt
+	echo 'Run End:'`date` >> time.txt
 
-runLPSO:LPSO
-	./LPSO > lpso.txt
-
-runGPSO:GPSO
-	./GPSO > gpso.txt
-
-runBPSO:BPSO
-	./BPSO > bpso.txt
-
-runCLPSO:CLPSO
-	./CLPSO > clpso.txt
-
-output:lpso.txt
-	cat lpso.txt gpso.txt bpso.txt clpso.txt ppso.txt > $(outputPath)/all.txt
+output:pde.txt
+	cat time.txt de1.txt de2.txt de3.txt de4.txt pde.txt > $(outputPath)/all.txt
 
 clean:
 	rm *.txt
