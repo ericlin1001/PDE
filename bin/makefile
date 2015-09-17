@@ -13,4 +13,4 @@ output:pde.txt
 	cat time.txt de1.txt de2.txt de3.txt de4.txt pde.txt > $(outputPath)/all.txt
 
 clean:
-	rm *.txt
+	rm -f *.txt

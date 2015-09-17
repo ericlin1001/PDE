@@ -5,7 +5,7 @@ Result:
 	./output/all.txt
 
 SourceCode:
-	./src/ppso.cpp
+	./src/pde.cpp
 
 Needed Software:
 	mpi

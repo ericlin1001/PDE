@@ -23,4 +23,8 @@ run:$(binPath)/PDE
 	@echo ****Result is saved in ./output/all.txt******
 
 
+clean:
+	rm -f *.txt
+	rm -f bin/*.txt
+
 
