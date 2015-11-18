@@ -2,14 +2,19 @@
 /*Problem:
   1.what's the strategy when new generated X is out of range.
 	Current:is reinitialized among range of X.
-  2.within a generation, should a new nenerated X be updated immediately, so that every following x is generated basing on partial updated population.
+
+  2.within a generation, should a new generated X be updated immediately,
+	  so that every following x is generated basing on partial updated population.
 	Current:every x is generated basing on last generation population, not on current partial updated population.
-  3.What to do when some population do not have enough to be miraged to other population?
-	Current:I set MinPopSize=5, and when the size of some population is <= MinPopSize, the population will not be migrated to other population.
-	4.In PDE, what's value of MaxFEs for every single DE exectuted by PDE?
+
+  3.What to do when some population do not have enough to be migrated to other population?
+	Current:I set MinPopSize=5, and when the size of some population is <= MinPopSize,
+		the population will not be migrated to other population.
+
+  4.In PDE, what's value of MaxFEs for every single DE exectuted by PDE?
 		Current:MaxFEs(DE)=MaxFEs(PDE)/numberOf(DE)
 
-	--by Eric.  2015年 09月 17日 星期四 14:51:47 CST
+	--by Eric.  Thu Sep 17 20:14:26 CST 2015
 	*/
 	
 #include<stdio.h>
