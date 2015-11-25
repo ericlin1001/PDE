@@ -1,3 +1,4 @@
+//To fix:PDE costs more time than sum of the time the four DEs cost.
 //#define DEBUG
 /*Problem:
   1.what's the strategy when new generated X is out of range.
@@ -27,9 +28,12 @@
 #include<time.h>
 #include<string.h>
 #include<math.h>
+void cec14_test_func(double *, double *,int,int,int);
 using namespace std;
 //set when compile the code.
 //#define ALGORITHM 4
+
+#include "include/template.h"
 
 #if ALGORITHM==4
 #define OMPI_IMPORTS
@@ -42,355 +46,8 @@ using namespace std;
 #define Trace(m) {cout<<#m"="<<(m)<<endl;}
 #define ASSERT(cond) if(!(cond)){cerr<<"Error: condition("#cond") fails!!"<<endl;};
 #define Test(m) cout<<#m"={"; m; cout<<"}"<<endl;
-void Tagg(const char *str){
-	static int count=0;
-	count++;
-	printf("******Tag%d:%s\n",count,str);
-}
-double gaussrand()
-{
-	static double V1, V2, S;
-	static int phase = 0;
-	double X;
-	if ( phase == 0 ) {
-		do {
-			double U1 = (double)rand() / RAND_MAX;
-			double U2 = (double)rand() / RAND_MAX;
 
-			V1 = 2.0 * U1 - 1.0;
-			V2 = 2.0 * U2 - 1.0;
-			S = V1 * V1 + V2 * V2;
-		} while(S >= 1 || S == 0);
-		X = V1 * sqrt(-2 * log(S) / S);
-	} else
-		X = V2 * sqrt(-2 * log(S) / S);
-	phase = 1 - phase;
-	return X;
-}
-inline double NormD(double u,double t){
-	return gaussrand()*t+u;
-}
-double drand(){
-	//[0,1);
-	double r=rand();
-	r/=((double)RAND_MAX+1);
-	return r;
-}
-double drand(double min,double max){
-	return drand()*(max-min)+min;
-}
 
-template<class T>
-void printVec(const vector<T>&arr){
-	cout<<"(";
-	for(int i=0;i<arr.size();i++){
-		if(i!=0)cout<<',';
-		cout<<arr[i];
-	}
-	cout<<")";
-}
-class Tic{
-	//accuration in milliseconds
-	private:
-		static long lastTime;
-		Tic(){}
-		inline static long getTimeMs(){
-			timeval timeStart;
-			gettimeofday(&timeStart,NULL);
-			long res=((long)timeStart.tv_sec)*1000+(long)timeStart.tv_usec/1000;
-			return res;
-		}
-	public:
-		static long mtic(){
-			//in milliseconds.
-			long currentTime=getTimeMs();
-			long dur=currentTime-lastTime;
-			lastTime=currentTime;
-			return dur;
-		}
-		static void tic(const char *tag="begin"){
-			if(strcmp(tag,"begin")==0){
-				cout<<"Tic::"<<tag<<endl;
-				dtic();
-			}else{
-				cout<<"Tic::"<<tag<<" used:"<<dtic()<<"(seconds)."<<endl;
-			}
-		}
-		inline static double dtic(){
-			//in seconds.
-			return (double)mtic()/1000.0;
-		}
-		static void test(){
-			Tic::mtic();
-			usleep(1234000);//sleep for 1234 milliseconds.(1.234seconds)
-			cout<<Tic::dtic()<<"seconds"<<endl;
-		}
-
-};
-long Tic::lastTime=0;
-
-void printArr(int *arr,int size){
-	cout<<"(";
-	for(int i=0;i<size;i++){
-		if(i!=0)cout<<',';
-		cout<<arr[i];
-	}
-	cout<<")";
-}
-class Function{
-#define MAX_FUNCTION_NAME 150
-	private:
-		char shortName[50];
-		char funName[MAX_FUNCTION_NAME];
-		double xlow,xup;
-		double fbest;
-		bool isFindMin;
-		int numDim;
-		//
-		int feCounter;
-	private:
-	public:
-		static double u(double x,double a,double k,double m){
-			if(x>a)return k*pow(x-a,m);
-			if(x<-a)return k*pow(-x-a,m);
-			return 0;
-		}
-		virtual double operator()(const double *xs,int size){
-			feCounter++;
-			return 0;
-		}
-		inline double f(const vector<double>&xs){
-			return operator()(&xs[0],xs.size());
-		}
-	public:
-		Function(const char *s,double xlow,double xup,double fbest,bool isFindMin,int numDim){
-			this->xlow=xlow;
-			this->xup=xup;
-			this->fbest=fbest;
-			this->isFindMin=isFindMin;
-			this->numDim=numDim;
-			strcpy(shortName,s);
-			if(isFindMin){
-				sprintf(funName,"{%s(%f,%f)^%d fmin:%f}",s,xlow,xup,numDim,fbest);
-			}else{
-				sprintf(funName,"{%s(%f,%f)^%d fmax:%f}",s,xlow,xup,numDim,fbest);
-			}
-			feCounter=0;
-		}
-		int getfeCounter()const{return feCounter;}
-		double getBest()const{return fbest;}
-		bool getIsFindMin()const{return isFindMin;}
-		inline bool isFBetter(double a,double b){
-			return isFindMin^(a>=b);
-		}
-		int getNumDim()const{return numDim;}
-		double getRange(int botOrUp){
-			if(botOrUp==0)return xlow;
-			return xup;
-		}
-		const char *getShortName()const{return shortName;}
-		const char *getName()const{return funName;}
-};
-
-#define DefFunction(name,xlow,xup,fbest,isFindMin) class name : public Function{\
-	public: name(int numDim):Function(#name,xlow,xup,fbest,isFindMin,numDim){}\
-			virtual double operator()(const double *xs,int size){\
-				Function::operator()(xs,size);
-#define EndDef }};	
-DefFunction(PDEF3,-10,10,0,true)
-	double res=0.0;
-	for(int i=0;i<size-1;i++){
-		double t=xs[i+1]-xs[i];
-		double t1=xs[i]-1;
-		res+=t*t*100.0+t1*t1;
-	}
-	return res;
-EndDef
-
-DefFunction(PDEF4,-500,500,0,true)
-	double res=0.0;
-	for(int i=0;i<size;i++){
-		res+=-xs[i]*sin(sqrt(fabs(xs[i])));
-	}
-	res+=(double)418.9829*(double)size;
-	return res;
-EndDef
-
-DefFunction(F1,-100,100,0,true)
-	double res=0.0;
-	for(int i=0;i<size;i++){
-		double x=xs[i];
-		res+=x*x;
-	}
-return res;
-	EndDef
-
-DefFunction(F2,-10,10,0,true)
-	double res=0.0;
-	double sum=0.0;
-	double mul=1.0;
-	for(int i=0;i<size;i++){
-		double fabsx=fabs(xs[i]);
-		sum+=fabsx;
-		mul*=fabsx;
-	}
-res=sum+mul;
-return res;
-EndDef
-
-DefFunction(F3,-100,100,0,true)
-	double res=0.0;
-	for(int i=0;i<size;i++){
-		double insum=0.0;
-		for(int j=0;j<=i;j++){
-			insum+=xs[j];
-		}
-		res+=insum*insum;
-	}
-return res;
-EndDef
-
-DefFunction(F4,-100,100,0,true)
-	double res=fabs(xs[0]);
-	for(int i=1;i<size;i++){
-		double tmp=fabs(xs[i]);
-		if(tmp<res)res=tmp;
-	}
-return res;
-EndDef
-
-//untest:
-DefFunction(F5,-30,30,0,true)
-	double res=0.0;
-	for(int i=0;i<size-1;i++){
-		double tmp=pow(xs[i+1]-xs[i]*xs[i],2)*100.0+pow(xs[i]-1.0,2);
-		res+=tmp;
-	}
-return res;
-EndDef
-
-DefFunction(F6,-100,100,0,true)
-	double res=0.0;
-	for(int i=0;i<size;i++){
-		int tmp=floor(xs[i]+0.5);
-		res+=tmp*tmp;
-	}
-return res;
-EndDef
-
-DefFunction(F7,-1.28,1.28,0,true)
-	double res=0.0;
-	for(int i=0;i<size;i++){
-		double tmp=pow(xs[i],4)*(double)(i+1);
-		res+=tmp;
-	}
-	res+=drand();
-return res;
-EndDef
-
-DefFunction(F8,-500,500,-12569.5,true)
-	double res=0.0;
-	for(int i=0;i<size;i++){
-		double tmp=-xs[i]*sin(sqrt(fabs(xs[i])));
-		res+=tmp;
-	}
-return res;
-EndDef
-
-DefFunction(F9,-5.12,5.12,0,true)
-	double res=0.0;
-	for(int i=0;i<size;i++){
-		double tmp=pow(xs[i],2)-(double)10.0*cos(xs[i]*2.0*MATH_PI)+10.0;
-		res+=tmp;
-	}
-return res;
-EndDef
-
-DefFunction(F10,-32,32,0,true)
-	double res=0.0;
-	double sumx2=0.0;
-	double sumcosx=0.0;
-	for(int i=0;i<size;i++){
-		sumx2+=pow(xs[i],2);
-		sumcosx+=cos(xs[i]*MATH_PI*2.0);
-	}
-res=-20.0*exp(-0.2*sqrt(sumx2/(double)size))-exp(sumcosx/(double)size)+20.0+MATH_EXP;
-return res;
-EndDef
-
-DefFunction(F11,-600.0,600.0,0,true)
-	double res=0.0;
-	double sumx2=0.0;
-	double mulcos=1.0;
-	for(int i=0;i<size;i++){
-		sumx2+=pow(xs[i],2);
-		mulcos*=cos(xs[i]/sqrt((double)i+1));
-	}
-res=sumx2/4000.0-mulcos+1.0;
-return res;
-EndDef
-
-DefFunction(F12,-50,50,0,true)
-	double res=0.0;
-	double y1=1.0+(xs[0]+1.0)/4.0;
-	double yd=1.0+(xs[size-1]+1.0)/4.0;
-	double sumy=0.0;
-	double sumu=0.0;
-	//
-	double yi,yi1;
-	yi=y1;
-	for(int i=0;i<size-1;i++){
-		yi1=1.0+(xs[i+1]+1.0)/4.0;
-		sumy+=pow(yi-1.0,2)*(1.0+10.0*pow(sin(MATH_PI*yi1),2));
-		yi=yi1;
-	}
-for(int i=0;i<size;i++){
-	sumu+=Function::u(xs[i],10,100,4);
-}
-res=MATH_PI/(double)size*(10.0*pow(sin(MATH_PI*y1),2)+sumy+pow(yd-1,2))
-	+sumu;
-	return res;
-	EndDef
-
-DefFunction(F13,-50,50,0,true)
-	double res=0.0;
-	double sumx=0.0;
-	double sumu=0.0;
-	for(int i=0;i<size-1;i++){
-		sumx+=pow(xs[i]-1,2)*(1+pow(sin(3.0*MATH_PI*xs[i+1]),2));
-	}
-for(int i=0;i<size;i++){
-	sumu+=Function::u(xs[i],5,100,4);
-}
-double xd=xs[size-1];
-res=0.1*(pow(sin(3.0*MATH_PI*xs[0]),2)+sumx+
-		pow(xd-1.0,2)*(1+pow(sin(2.0*MATH_PI*xd),2)))+sumu;
-return res;
-EndDef
-
-class RandomPermutation{
-	vector<int>p;
-	int i;
-	int n;
-	public:
-		RandomPermutation(int tn):n(tn),i(0){
-			p.resize(n);
-			for(int i=0;i<n;i++){
-				p[i]=i;
-			}
-		}
-		void generate(){
-			i=0;
-		}
-		int next(){
-			//at most invoked n times before next generate.
-			ASSERT(i<n&&i>=0);
-			int r=rand()%(n-i);
-			i++;
-			swap(p[n-i],p[r]);
-			return p[n-i];
-		}
-};
 class DE{
 	private:
 		//about function:f
@@ -603,42 +260,9 @@ class DE{
 		}
 };
 
-class FunctionFactory{
-	private:
-		vector<Function*>fs;
-		FunctionFactory(int numDim){
-			fs.resize(4);
-			fs[0]=new F1(numDim);
-			fs[1]=new F3(numDim);
-			fs[2]=new PDEF3(numDim);
-			fs[3]=new PDEF4(numDim);
-		}
-		static FunctionFactory*instance;
-	public:
-		static FunctionFactory &Instance(int numDim){
-			if(instance==0)instance=new FunctionFactory(numDim);
-			return *instance;
-		}
-		/*
-		   void setNumDim(int numDim){
-		   }
-		 */
-		Function*getFunction(int index)const{
-			return fs[index];
-		}
-		int getNumFunction()const{
-			return fs.size();
-		}
-		~FunctionFactory(){
-			for(int i=0;i<getNumFunction();i++){
-				delete fs[i];
-			}
-		}
-};
-FunctionFactory*FunctionFactory::instance=0;
-
 /*
 */
+
 #if ALGORITHM==4
 int PDE(int processId,int numProcess,Function*f,vector<double>&bestX,double &bestF){
 	srand(time(NULL));//srand in every process.
@@ -647,9 +271,9 @@ int PDE(int processId,int numProcess,Function*f,vector<double>&bestX,double &bes
 	const int TAG2=98;
 	MPI_Status status;
 	//DE:
-	int numP=50;
 	const int MaxFE=300000;
 	const int NumAlgorithm=min(numProcess-1,4);
+	int numP=50;
 	int numDim=f->getNumDim();
 	//
 	DE de;
@@ -658,7 +282,7 @@ int PDE(int processId,int numProcess,Function*f,vector<double>&bestX,double &bes
 		de.begin(f);
 	}
 	ASSERT(NumAlgorithm>0);
-	const int MaxGeneration=MaxFE/(numP*NumAlgorithm);
+	const int MaxGeneration=MaxFE/(NumAlgorithm*numP);
 	//const int MaxGeneration=5000;
 	ASSERT(MaxGeneration>0);
 	//master
@@ -818,25 +442,7 @@ vector<double> runSerialDE(DE &de,Function*f,int maxRun){
 	}
 	return results;
 }
-void calStatistics(const vector<double>&arr,double &min,double &max,double &mean,double &std){
-	min=arr[0];
-	max=arr[0];
-	mean=0.0;
-	for(int i=0;i<arr.size();i++){
-		double x=arr[i];
-		if(x<min)min=x;
-		if(x>max)max=x;
-		mean+=x;
-	}
-	mean/=(double)arr.size();
-	std=0.0;
-	for(int i=0;i<arr.size();i++){
-		double x=arr[i];
-		std+=pow(x-mean,2);
-	}
-	std/=(double)arr.size();
-	std=sqrt(std);
-}
+
 
 //int old_main(int argc,char *argv[]){
 int main(int argc,char *argv[]){
@@ -844,6 +450,7 @@ int main(int argc,char *argv[]){
 	const int maxRun=30;
 	const int numDim=30;
 	const int numP=50;
+	cec14_test_func();
 	FunctionFactory &funGenerator=FunctionFactory::Instance(numDim);
 	const int numTestFunction=funGenerator.getNumFunction();
 #if ALGORITHM==4 

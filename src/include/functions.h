@@ -1,6 +1,7 @@
 #ifdef FUNCTION_H
 #else
 #define FUNCTION_H
+#include "utils.h"
 class Function{
 #define MAX_FUNCTION_NAME 150
 	private:
