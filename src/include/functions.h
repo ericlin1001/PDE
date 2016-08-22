@@ -2,6 +2,7 @@
 #else
 #define FUNCTION_H
 #include "utils.h"
+#include "cec14_test_func.h"
 class Function{
 #define MAX_FUNCTION_NAME 150
 	private:
@@ -20,11 +21,11 @@ class Function{
 			if(x<-a)return k*pow(-x-a,m);
 			return 0;
 		}
-		virtual double operator()(const double *xs,int size){
+		virtual double operator()(double *xs,int size){
 			feCounter++;
 			return 0;
 		}
-		inline double f(const vector<double>&xs){
+		inline double f(vector<double>&xs){
 			return operator()(&xs[0],xs.size());
 		}
 	public:
@@ -59,7 +60,7 @@ class Function{
 
 #define DefFunction(name,xlow,xup,fbest,isFindMin) class name : public Function{\
 	public: name(int numDim):Function(#name,xlow,xup,fbest,isFindMin,numDim){}\
-			virtual double operator()(const double *xs,int size){\
+			virtual double operator()(double *xs,int size){\
 				Function::operator()(xs,size);
 #define EndDef }};	
 DefFunction(PDEF3,-10,10,0,true)
@@ -232,26 +233,43 @@ res=0.1*(pow(sin(3.0*M_PI*xs[0]),2)+sumx+
 		pow(xd-1.0,2)*(1+pow(sin(2.0*M_PI*xd),2)))+sumu;
 return res;
 EndDef
+
+#define DefCEC14Func(name,no) DefFunction(name,-100,100,no*100,true) \
+	double res;\
+	cec14_test_func(xs,&res,size,1,no);\
+	return res;\
+EndDef
+
+DefCEC14Func(CEC14_F1,1);
+DefCEC14Func(CEC14_F2,2);
+DefCEC14Func(CEC14_F3,3);
+DefCEC14Func(CEC14_F4,4);
+DefCEC14Func(CEC14_F5,5);
+DefCEC14Func(CEC14_F6,6);
+DefCEC14Func(CEC14_F7,7);
+DefCEC14Func(CEC14_F8,8);
+DefCEC14Func(CEC14_F9,9);
+
 class FunctionFactory{
 	private:
+	protected:
 		vector<Function*>fs;
 		FunctionFactory(int numDim){
+			init(numDim);
+		}
+	public:
+		static FunctionFactory*instance;
+		virtual void init(int numDim){
 			fs.resize(4);
 			fs[0]=new F1(numDim);
 			fs[1]=new F3(numDim);
 			fs[2]=new PDEF3(numDim);
 			fs[3]=new PDEF4(numDim);
 		}
-		static FunctionFactory*instance;
-	public:
 		static FunctionFactory &Instance(int numDim){
 			if(instance==0)instance=new FunctionFactory(numDim);
 			return *instance;
 		}
-		/*
-		   void setNumDim(int numDim){
-		   }
-		 */
 		Function*getFunction(int index)const{
 			return fs[index];
 		}
@@ -264,5 +282,28 @@ class FunctionFactory{
 			}
 		}
 };
+
 FunctionFactory*FunctionFactory::instance=0;
+class FunctionFactoryMy:public FunctionFactory{
+	private:
+		FunctionFactoryMy(int numDim):FunctionFactory(numDim){
+		}
+	public:
+		static FunctionFactoryMy &Instance(int numDim){
+			if(instance==0)instance=new FunctionFactoryMy(numDim);
+			return *(FunctionFactoryMy*)instance;
+		}
+		virtual void init(int numDim){
+			fs.resize(9);
+			fs[0]=new CEC14_F1(numDim);
+			fs[1]=new CEC14_F2(numDim);
+			fs[2]=new CEC14_F3(numDim);
+			fs[3]=new CEC14_F4(numDim);
+			fs[4]=new CEC14_F5(numDim);
+			fs[5]=new CEC14_F6(numDim);
+			fs[6]=new CEC14_F7(numDim);
+			fs[7]=new CEC14_F8(numDim);
+			fs[8]=new CEC14_F9(numDim);
+		}
+};
 #endif

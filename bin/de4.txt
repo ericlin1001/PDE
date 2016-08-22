@@ -1,0 +1,9 @@
+Runing DE(DE3/rand/0.900000/0.500000) 30times.
+F	mean	std
+Tic::begin
+F1	2.09298e-104	5.98672e-104
+F3	3.6996e-14	1.20969e-13
+PDEF3	0.854053	0.858616
+PDEF4	758.402	931.698
+Tic::end used:32.552(seconds).
+end.

@@ -5,7 +5,7 @@
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
 ASCII	include/rapidjson/encodings.h	/^struct ASCII {$/;"	s
-ASSERT	pde.cpp	46;"	d	file:
+ASSERT	pde.cpp	47;"	d	file:
 Accept	include/rapidjson/document.h	/^    bool Accept(Handler& handler) const {$/;"	f	class:GenericValue
 AddChunk	include/rapidjson/allocators.h	/^    void AddChunk(size_t capacity) {$/;"	f	class:MemoryPoolAllocator
 AddConst	include/rapidjson/internal/meta.h	/^template <typename T> struct AddConst { typedef const T Type; };$/;"	s	namespace:internal
@@ -57,6 +57,7 @@ Bool	include/rapidjson/writer.h	/^    bool Bool(bool b)           { Prefix(b ? k
 BoolExpr	include/rapidjson/internal/meta.h	/^template <typename C> struct BoolExpr : SelectIf<C,TrueType,FalseType>::Type {};$/;"	s	namespace:internal
 BoolType	include/rapidjson/internal/meta.h	/^template <bool Cond> struct BoolType {$/;"	s	namespace:internal
 Bottom	include/rapidjson/internal/stack.h	/^    T* Bottom() { return (T*)stack_; }$/;"	f	class:internal::Stack
+CEC2015_TEST_FUNCTION	include/cec14_test_func.h	11;"	d
 COPY	include/rapidjson/encodings.h	125;"	d
 COPY	include/rapidjson/encodings.h	147;"	d
 COPY	include/rapidjson/encodings.h	154;"	d
@@ -128,7 +129,8 @@ Decode	include/rapidjson/encodings.h	/^    static bool Decode(InputStream& is, u
 Decode	include/rapidjson/encodings.h	/^    static bool Decode(InputStream& is, unsigned* codepoint) {$/;"	f	struct:UTF16
 Decode	include/rapidjson/encodings.h	/^    static bool Decode(InputStream& is, unsigned* codepoint) {$/;"	f	struct:UTF32
 Decode	include/rapidjson/encodings.h	/^    static bool Decode(InputStream& is, unsigned* codepoint) {$/;"	f	struct:UTF8
-DefFunction	include/functions.h	60;"	d
+DefCEC14Func	include/functions.h	237;"	d
+DefFunction	include/functions.h	61;"	d
 Default	include/rapidjson/reader.h	/^    bool Default() { return true; }$/;"	f	struct:BaseReaderHandler
 Destroy	include/rapidjson/document.h	/^    void Destroy() {$/;"	f	class:GenericDocument
 Destroy	include/rapidjson/internal/stack.h	/^    void Destroy() {$/;"	f	class:internal::Stack
@@ -152,8 +154,8 @@ Double	include/rapidjson/internal/ieee754.h	/^class Double {$/;"	c	namespace:int
 Double	include/rapidjson/prettywriter.h	/^    bool Double(double d)       { PrettyPrefix(kNumberType); return Base::WriteDouble(d); }$/;"	f	class:PrettyWriter
 Double	include/rapidjson/reader.h	/^    bool Double(double) { return static_cast<Override&>(*this).Default(); }$/;"	f	struct:BaseReaderHandler
 Double	include/rapidjson/writer.h	/^    bool Double(double d)       { Prefix(kNumberType); return WriteDouble(d); }$/;"	f	class:Writer
-E	cec14_test_func.cpp	15;"	d	file:
-EPS	cec14_test_func.cpp	14;"	d	file:
+E	include/cec14_test_func.h	18;"	d
+EPS	include/cec14_test_func.h	17;"	d
 EffectiveSignificandSize	include/rapidjson/internal/ieee754.h	/^    static unsigned EffectiveSignificandSize(int order) {$/;"	f	class:internal::Double
 Empty	include/rapidjson/document.h	/^    bool Empty() const { RAPIDJSON_ASSERT(IsArray()); return data_.a.size == 0; }$/;"	f	class:GenericValue
 Empty	include/rapidjson/internal/stack.h	/^    bool Empty() const { return stackTop_ == stack_; }$/;"	f	class:internal::Stack
@@ -177,7 +179,7 @@ EndArray	include/rapidjson/document.h	/^    bool EndArray(SizeType elementCount)
 EndArray	include/rapidjson/prettywriter.h	/^    bool EndArray(SizeType memberCount = 0) {$/;"	f	class:PrettyWriter
 EndArray	include/rapidjson/reader.h	/^    bool EndArray(SizeType) { return static_cast<Override&>(*this).Default(); }$/;"	f	struct:BaseReaderHandler
 EndArray	include/rapidjson/writer.h	/^    bool EndArray(SizeType elementCount = 0) {$/;"	f	class:Writer
-EndDef	include/functions.h	64;"	d
+EndDef	include/functions.h	65;"	d
 EndObject	include/rapidjson/document.h	/^    bool EndObject(SizeType memberCount) {$/;"	f	class:GenericDocument
 EndObject	include/rapidjson/prettywriter.h	/^    bool EndObject(SizeType memberCount = 0) {$/;"	f	class:PrettyWriter
 EndObject	include/rapidjson/reader.h	/^    bool EndObject(SizeType) { return static_cast<Override&>(*this).Default(); }$/;"	f	struct:BaseReaderHandler
@@ -226,6 +228,8 @@ Function	include/functions.h	/^		Function(const char *s,double xlow,double xup,d
 Function	include/functions.h	/^class Function{$/;"	c
 FunctionFactory	include/functions.h	/^		FunctionFactory(int numDim){$/;"	f	class:FunctionFactory
 FunctionFactory	include/functions.h	/^class FunctionFactory{$/;"	c
+FunctionFactoryMy	include/functions.h	/^		FunctionFactoryMy(int numDim):FunctionFactory(numDim){$/;"	f	class:FunctionFactoryMy
+FunctionFactoryMy	include/functions.h	/^class FunctionFactoryMy:public FunctionFactory{$/;"	c
 GenericDocument	include/rapidjson/document.h	/^    GenericDocument(Allocator* allocator = 0, size_t stackCapacity = kDefaultStackCapacity, StackAllocator* stackAllocator = 0) : $/;"	f	class:GenericDocument
 GenericDocument	include/rapidjson/document.h	/^    explicit GenericDocument(Type type, Allocator* allocator = 0, size_t stackCapacity = kDefaultStackCapacity, StackAllocator* stackAllocator = 0) :$/;"	f	class:GenericDocument
 GenericDocument	include/rapidjson/document.h	/^class GenericDocument : public GenericValue<Encoding, Allocator> {$/;"	c
@@ -342,7 +346,7 @@ HasParseError	include/rapidjson/document.h	/^    bool HasParseError() const { re
 HasParseError	include/rapidjson/reader.h	/^    bool HasParseError() const { return parseResult_.IsError(); }$/;"	f	class:GenericReader
 Host	include/rapidjson/internal/meta.h	/^    struct Host {$/;"	s	struct:internal::IsBaseOfImpl
 I	include/rapidjson/document.h	/^        struct I {$/;"	s	union:GenericValue::Number
-INF	cec14_test_func.cpp	13;"	d	file:
+INF	include/cec14_test_func.h	16;"	d
 INT16_C	include/rapidjson/msinttypes/stdint.h	277;"	d
 INT16_C	include/rapidjson/msinttypes/stdint.h	55;"	d
 INT16_C	include/rapidjson/msinttypes/stdint.h	66;"	d
@@ -389,6 +393,7 @@ INT_LEAST8_MAX	include/rapidjson/msinttypes/stdint.h	193;"	d
 INT_LEAST8_MIN	include/rapidjson/msinttypes/stdint.h	192;"	d
 InsituStringStream	include/rapidjson/rapidjson.h	/^typedef GenericInsituStringStream<UTF8<> > InsituStringStream;$/;"	t
 Instance	include/functions.h	/^		static FunctionFactory &Instance(int numDim){$/;"	f	class:FunctionFactory
+Instance	include/functions.h	/^		static FunctionFactoryMy &Instance(int numDim){$/;"	f	class:FunctionFactoryMy
 Int	include/rapidjson/document.h	/^    bool Int(int i) { new (stack_.template Push<ValueType>()) ValueType(i); return true; }$/;"	f	class:GenericDocument
 Int	include/rapidjson/prettywriter.h	/^    bool Int(int i)             { PrettyPrefix(kNumberType); return Base::WriteInt(i); }$/;"	f	class:PrettyWriter
 Int	include/rapidjson/reader.h	/^    bool Int(int) { return static_cast<Override&>(*this).Default(); }$/;"	f	struct:BaseReaderHandler
@@ -466,11 +471,11 @@ Length	include/rapidjson/reader.h	/^        size_t Length() { return 0; }$/;"	f	
 Length	include/rapidjson/reader.h	/^        size_t Length() { return stackStream.Length(); }$/;"	f	class:GenericReader::NumberStream
 Level	include/rapidjson/writer.h	/^        Level(bool inArray_) : valueCount(0), inArray(inArray_) {}$/;"	f	struct:Writer::Level
 Level	include/rapidjson/writer.h	/^    struct Level {$/;"	s	class:Writer
-M	main.cpp	/^double *OShift,*M,*y,*z,*x_bound;$/;"	v
-MATH_EXP	pde.cpp	44;"	d	file:
-MATH_PI	pde.cpp	43;"	d	file:
-MAX_BUFFER	pde.cpp	42;"	d	file:
-MAX_FUNCTION_NAME	include/functions.h	6;"	d
+M	include/cec14_test_func.h	/^double *OShift,*M,*y,*z,*x_bound;$/;"	v
+MATH_EXP	pde.cpp	45;"	d	file:
+MATH_PI	pde.cpp	44;"	d	file:
+MAX_BUFFER	pde.cpp	43;"	d	file:
+MAX_FUNCTION_NAME	include/functions.h	7;"	d
 Malloc	include/rapidjson/allocators.h	/^    void* Malloc(size_t size) { $/;"	f	class:CrtAllocator
 Malloc	include/rapidjson/allocators.h	/^    void* Malloc(size_t size) {$/;"	f	class:MemoryPoolAllocator
 MaxChars	include/rapidjson/document.h	/^        enum { MaxChars = sizeof(String) \/ sizeof(Ch), MaxSize = MaxChars - 1, LenPos = MaxSize };$/;"	e	enum:GenericValue::ShortString::__anon14
@@ -516,8 +521,8 @@ NumberStream	include/rapidjson/reader.h	/^        NumberStream(GenericReader& re
 NumberStream	include/rapidjson/reader.h	/^    class NumberStream<InputStream, false> {$/;"	c	class:GenericReader
 NumberStream	include/rapidjson/reader.h	/^    class NumberStream<InputStream, true> : public NumberStream<InputStream, false> {$/;"	c	class:GenericReader
 NumberToken	include/rapidjson/reader.h	/^        NumberToken,$/;"	e	enum:GenericReader::Token
-OMPI_IMPORTS	pde.cpp	38;"	d	file:
-OShift	main.cpp	/^double *OShift,*M,*y,*z,*x_bound;$/;"	v
+OMPI_IMPORTS	pde.cpp	39;"	d	file:
+OShift	include/cec14_test_func.h	/^double *OShift,*M,*y,*z,*x_bound;$/;"	v
 Object	include/rapidjson/document.h	/^    struct Object {$/;"	s	class:GenericValue
 ObjectEmpty	include/rapidjson/document.h	/^    bool ObjectEmpty() const { RAPIDJSON_ASSERT(IsObject()); return data_.o.size == 0; }$/;"	f	class:GenericValue
 Offset	include/rapidjson/error/error.h	/^    size_t Offset() const { return offset_; }$/;"	f	struct:ParseResult
@@ -526,7 +531,7 @@ OrExprCond	include/rapidjson/internal/meta.h	/^template <> struct OrExprCond<fal
 OrExprCond	include/rapidjson/internal/meta.h	/^template <bool Cond1, bool Cond2> struct OrExprCond : TrueType {};$/;"	s	namespace:internal
 Override	include/rapidjson/reader.h	/^    typedef typename internal::SelectIf<internal::IsSame<Derived, void>, BaseReaderHandler, Derived>::Type Override;$/;"	t	struct:BaseReaderHandler
 PDE	pde.cpp	/^int PDE(int processId,int numProcess,Function*f,vector<double>&bestX,double &bestF){$/;"	f
-PI	cec14_test_func.cpp	16;"	d	file:
+PI	include/cec14_test_func.h	19;"	d
 PRIX16	include/rapidjson/msinttypes/inttypes.h	118;"	d
 PRIX32	include/rapidjson/msinttypes/inttypes.h	131;"	d
 PRIX64	include/rapidjson/msinttypes/inttypes.h	144;"	d
@@ -943,7 +948,7 @@ SIG_ATOMIC_MAX	include/rapidjson/msinttypes/stdint.h	246;"	d
 SIG_ATOMIC_MIN	include/rapidjson/msinttypes/stdint.h	245;"	d
 SIZE_MAX	include/rapidjson/msinttypes/stdint.h	250;"	d
 SIZE_MAX	include/rapidjson/msinttypes/stdint.h	252;"	d
-SS	main.cpp	/^int ini_flag=0,n_flag,func_flag,*SS;$/;"	v
+SS	include/cec14_test_func.h	/^int ini_flag,n_flag,func_flag,*SS;$/;"	v
 STATIC_ASSERTION_FAILURE	include/rapidjson/rapidjson.h	/^template <> struct STATIC_ASSERTION_FAILURE<true> { enum { value = 1 }; };$/;"	s
 SelectIf	include/rapidjson/internal/meta.h	/^template <typename C, typename T1, typename T2> struct SelectIf : SelectIfCond<C::Value, T1, T2> {};$/;"	s	namespace:internal
 SelectIfCond	include/rapidjson/internal/meta.h	/^template <bool C, typename T1, typename T2> struct SelectIfCond : SelectIfImpl<C>::template Apply<T1,T2> {};$/;"	s	namespace:internal
@@ -1118,7 +1123,7 @@ Tell	include/rapidjson/pointer.h	/^        size_t Tell() const { return src_ - h
 Tell	include/rapidjson/rapidjson.h	/^    size_t Tell() const { return static_cast<size_t>(src_ - head_); }$/;"	f	struct:GenericStringStream
 Tell	include/rapidjson/rapidjson.h	/^    size_t Tell() { return static_cast<size_t>(src_ - head_); }$/;"	f	struct:GenericInsituStringStream
 Tell	include/rapidjson/reader.h	/^        size_t Tell() { return is.Tell(); }$/;"	f	class:GenericReader::NumberStream
-Test	pde.cpp	47;"	d	file:
+Test	pde.cpp	48;"	d	file:
 Tic	include/utils.h	/^		Tic(){}$/;"	f	class:Tic
 Tic	include/utils.h	/^class Tic{$/;"	c
 ToBias	include/rapidjson/internal/ieee754.h	/^    uint64_t ToBias() const { return (u_ & kSignMask) ? ~u_ + 1 : u_ | kSignMask; }$/;"	f	class:internal::Double
@@ -1127,7 +1132,7 @@ Token	include/rapidjson/pointer.h	/^    struct Token {$/;"	s	class:GenericPointe
 Token	include/rapidjson/reader.h	/^    enum Token {$/;"	g	class:GenericReader
 Tokenize	include/rapidjson/reader.h	/^    RAPIDJSON_FORCEINLINE Token Tokenize(Ch c) {$/;"	f	class:GenericReader
 Top	include/rapidjson/internal/stack.h	/^    T* Top() { $/;"	f	class:internal::Stack
-Trace	pde.cpp	45;"	d	file:
+Trace	pde.cpp	46;"	d	file:
 Transcode	include/rapidjson/encodings.h	/^    RAPIDJSON_FORCEINLINE static bool Transcode(InputStream& is, OutputStream& os) {$/;"	f	struct:Transcoder
 Transcoder	include/rapidjson/encodings.h	/^struct Transcoder {$/;"	s
 Transcoder	include/rapidjson/encodings.h	/^struct Transcoder<Encoding, Encoding> {$/;"	s
@@ -1246,41 +1251,41 @@ _MSC_STDINT_H_	include/rapidjson/msinttypes/stdint.h	42;"	d
 _W64	include/rapidjson/msinttypes/stdint.h	106;"	d
 _W64	include/rapidjson/msinttypes/stdint.h	108;"	d
 a	include/rapidjson/document.h	/^        Array a;$/;"	m	union:GenericValue::Data
-ackley_func	cec14_test_func.cpp	/^void ackley_func (double *x, double *f, int nx, double *Os,double *Mr,int s_flag, int r_flag) \/* Ackley's  *\/$/;"	f
+ackley_func	include/cec14_test_func.h	/^void ackley_func (double *x, double *f, int nx, double *Os,double *Mr,int s_flag, int r_flag) \/* Ackley's  *\/$/;"	f
 add	pde.cpp	/^		void add(const vector<double>&XF){$/;"	f	class:DE
 algorithm	pde.cpp	/^		int algorithm;$/;"	m	class:DE	file:
 algorithmName	pde.cpp	/^		char algorithmName[100];$/;"	m	class:DE	file:
 allocator_	include/rapidjson/document.h	/^    Allocator* allocator_;$/;"	m	class:GenericDocument
 allocator_	include/rapidjson/internal/stack.h	/^    Allocator* allocator_;$/;"	m	class:internal::Stack
 allocator_	include/rapidjson/pointer.h	/^    Allocator* allocator_;                  \/\/!< The current allocator. It is either user-supplied or equal to ownAllocator_.$/;"	m	class:GenericPointer
-asyfunc	cec14_test_func.cpp	/^void asyfunc (double *x, double *xasy, int nx, double beta)$/;"	f
+asyfunc	include/cec14_test_func.h	/^void asyfunc (double *x, double *xasy, int nx, double beta)$/;"	f
 baseAllocator_	include/rapidjson/allocators.h	/^    BaseAllocator* baseAllocator_;  \/\/!< base allocator for allocating memory chunks.$/;"	m	class:MemoryPoolAllocator
 begin	pde.cpp	/^		void begin(Function* f){$/;"	f	class:DE
 begin_	include/rapidjson/memorystream.h	/^    const Ch* begin_;   \/\/!< Original head of the string.$/;"	m	struct:MemoryStream
-bent_cigar_func	cec14_test_func.cpp	/^void bent_cigar_func (double *x, double *f, int nx, double *Os,double *Mr, int s_flag, int r_flag) \/* Bent_Cigar *\/$/;"	f
+bent_cigar_func	include/cec14_test_func.h	/^void bent_cigar_func (double *x, double *f, int nx, double *Os,double *Mr, int s_flag, int r_flag) \/* Bent_Cigar *\/$/;"	f
 bestI	pde.cpp	/^		int bestI;$/;"	m	class:DE	file:
-bi_rastrigin_func	cec14_test_func.cpp	/^void bi_rastrigin_func (double *x, double *f, int nx, double *Os,double *Mr,int s_flag, int r_flag) \/* Lunacek Bi_rastrigin Function *\/$/;"	f
+bi_rastrigin_func	include/cec14_test_func.h	/^void bi_rastrigin_func (double *x, double *f, int nx, double *Os,double *Mr,int s_flag, int r_flag) \/* Lunacek Bi_rastrigin Function *\/$/;"	f
 bufferEnd_	include/rapidjson/filewritestream.h	/^    char *bufferEnd_;$/;"	m	class:FileWriteStream
 bufferLast_	include/rapidjson/filereadstream.h	/^    Ch *bufferLast_;$/;"	m	class:FileReadStream
 bufferSize_	include/rapidjson/filereadstream.h	/^    size_t bufferSize_;$/;"	m	class:FileReadStream
 buffer_	include/rapidjson/filereadstream.h	/^    Ch *buffer_;$/;"	m	class:FileReadStream
 buffer_	include/rapidjson/filewritestream.h	/^    char *buffer_;$/;"	m	class:FileWriteStream
 cIterativeParsingStateCount	include/rapidjson/reader.h	/^        cIterativeParsingStateCount$/;"	e	enum:GenericReader::IterativeParsingState
-calBestI	pde.cpp	/^		void calBestI(){$/;"	f	class:DE
 calStatistics	include/utils.h	/^void calStatistics(const vector<double>&arr,double &min,double &max,double &mean,double &std){$/;"	f
+calculateBestIndex	pde.cpp	/^		void calculateBestIndex(){$/;"	f	class:DE	file:
 capacity	include/rapidjson/allocators.h	/^        size_t capacity;    \/\/!< Capacity of the chunk in bytes (excluding the header itself).$/;"	m	struct:MemoryPoolAllocator::ChunkHeader
 capacity	include/rapidjson/document.h	/^        SizeType capacity;$/;"	m	struct:GenericValue::Array
 capacity	include/rapidjson/document.h	/^        SizeType capacity;$/;"	m	struct:GenericValue::Object
-cec14_test_func	cec14_test_func.cpp	/^void cec14_test_func(double *x, double *f, int nx, int mx,int func_num)$/;"	f
-cf01	cec14_test_func.cpp	/^void cf01 (double *x, double *f, int nx, double *Os,double *Mr,int r_flag) \/* Composition Function 1 *\/$/;"	f
-cf02	cec14_test_func.cpp	/^void cf02 (double *x, double *f, int nx, double *Os,double *Mr,int r_flag) \/* Composition Function 2 *\/$/;"	f
-cf03	cec14_test_func.cpp	/^void cf03 (double *x, double *f, int nx, double *Os,double *Mr,int r_flag) \/* Composition Function 3 *\/$/;"	f
-cf04	cec14_test_func.cpp	/^void cf04 (double *x, double *f, int nx, double *Os,double *Mr,int r_flag) \/* Composition Function 4 *\/$/;"	f
-cf05	cec14_test_func.cpp	/^void cf05 (double *x, double *f, int nx, double *Os,double *Mr,int r_flag) \/* Composition Function 4 *\/$/;"	f
-cf06	cec14_test_func.cpp	/^void cf06 (double *x, double *f, int nx, double *Os,double *Mr,int r_flag) \/* Composition Function 6 *\/$/;"	f
-cf07	cec14_test_func.cpp	/^void cf07 (double *x, double *f, int nx, double *Os,double *Mr,int *SS,int r_flag) \/* Composition Function 7 *\/$/;"	f
-cf08	cec14_test_func.cpp	/^void cf08 (double *x, double *f, int nx, double *Os,double *Mr,int *SS,int r_flag) \/* Composition Function 8 *\/$/;"	f
-cf_cal	cec14_test_func.cpp	/^void cf_cal(double *x, double *f, int nx, double *Os,double * delta,double * bias,double * fit, int cf_num)$/;"	f
+cec14_test_func	include/cec14_test_func.h	/^void cec14_test_func(double *x, double *f, int nx, int mx,int func_num)$/;"	f
+cf01	include/cec14_test_func.h	/^void cf01 (double *x, double *f, int nx, double *Os,double *Mr,int r_flag) \/* Composition Function 1 *\/$/;"	f
+cf02	include/cec14_test_func.h	/^void cf02 (double *x, double *f, int nx, double *Os,double *Mr,int r_flag) \/* Composition Function 2 *\/$/;"	f
+cf03	include/cec14_test_func.h	/^void cf03 (double *x, double *f, int nx, double *Os,double *Mr,int r_flag) \/* Composition Function 3 *\/$/;"	f
+cf04	include/cec14_test_func.h	/^void cf04 (double *x, double *f, int nx, double *Os,double *Mr,int r_flag) \/* Composition Function 4 *\/$/;"	f
+cf05	include/cec14_test_func.h	/^void cf05 (double *x, double *f, int nx, double *Os,double *Mr,int r_flag) \/* Composition Function 4 *\/$/;"	f
+cf06	include/cec14_test_func.h	/^void cf06 (double *x, double *f, int nx, double *Os,double *Mr,int r_flag) \/* Composition Function 6 *\/$/;"	f
+cf07	include/cec14_test_func.h	/^void cf07 (double *x, double *f, int nx, double *Os,double *Mr,int *SS,int r_flag) \/* Composition Function 7 *\/$/;"	f
+cf08	include/cec14_test_func.h	/^void cf08 (double *x, double *f, int nx, double *Os,double *Mr,int *SS,int r_flag) \/* Composition Function 8 *\/$/;"	f
+cf_cal	include/cec14_test_func.h	/^void cf_cal(double *x, double *f, int nx, double *Os,double * delta,double * bias,double * fit, int cf_num)$/;"	f
 chunkHead_	include/rapidjson/allocators.h	/^    ChunkHeader *chunkHead_;    \/\/!< Head of the chunk linked-list. Only the head chunk serves allocation.$/;"	m	class:MemoryPoolAllocator
 chunk_capacity_	include/rapidjson/allocators.h	/^    size_t chunk_capacity_;     \/\/!< The minimum capacity of chunk when they are allocated.$/;"	m	class:MemoryPoolAllocator
 code_	include/rapidjson/error/error.h	/^    ParseErrorCode code_;$/;"	m	struct:ParseResult
@@ -1298,9 +1303,9 @@ d_	include/rapidjson/document.h	/^        GenericDocument& d_;$/;"	m	struct:Gene
 d_	include/rapidjson/internal/ieee754.h	/^        double d_;$/;"	m	union:internal::Double::__anon11
 data_	include/rapidjson/document.h	/^    Data data_;$/;"	m	class:GenericValue
 del	pde.cpp	/^		vector<double>del(int i){$/;"	f	class:DE
-dif_powers_func	cec14_test_func.cpp	/^void dif_powers_func (double *x, double *f, int nx, double *Os,double *Mr,int s_flag, int r_flag) \/* Different Powers *\/$/;"	f
+dif_powers_func	include/cec14_test_func.h	/^void dif_powers_func (double *x, double *f, int nx, double *Os,double *Mr,int s_flag, int r_flag) \/* Different Powers *\/$/;"	f
 digits_	include/rapidjson/internal/biginteger.h	/^    Type digits_[kCapacity];$/;"	m	class:internal::BigInteger
-discus_func	cec14_test_func.cpp	/^void discus_func (double *x, double *f, int nx, double *Os,double *Mr, int s_flag, int r_flag) \/* Discus *\/$/;"	f
+discus_func	include/cec14_test_func.h	/^void discus_func (double *x, double *f, int nx, double *Os,double *Mr, int s_flag, int r_flag) \/* Discus *\/$/;"	f
 doc	include/settingParser.h	/^		Document doc;$/;"	m	class:SettingParser
 drand	include/utils.h	/^double drand(){$/;"	f
 drand	include/utils.h	/^double drand(double min,double max){$/;"	f
@@ -1309,12 +1314,12 @@ dtic	include/utils.h	/^		inline static double dtic(){$/;"	f	class:Tic
 dtoa	include/rapidjson/internal/dtoa.h	/^inline char* dtoa(double value, char* buffer) {$/;"	f	namespace:internal
 e	include/rapidjson/internal/diyfp.h	/^    int e;$/;"	m	struct:internal::DiyFp
 elements	include/rapidjson/document.h	/^        GenericValue* elements;$/;"	m	struct:GenericValue::Array
-ellips_func	cec14_test_func.cpp	/^void ellips_func (double *x, double *f, int nx, double *Os,double *Mr, int s_flag, int r_flag) \/* Ellipsoidal *\/$/;"	f
+ellips_func	include/cec14_test_func.h	/^void ellips_func (double *x, double *f, int nx, double *Os,double *Mr, int s_flag, int r_flag) \/* Ellipsoidal *\/$/;"	f
 end_	include/rapidjson/memorystream.h	/^    const Ch* end_;     \/\/!< End of stream.$/;"	m	struct:MemoryStream
 end_	include/rapidjson/pointer.h	/^        const Ch* end_;     \/\/!< Past-the-end position.$/;"	m	class:GenericPointer::PercentDecodeStream
 eof_	include/rapidjson/filereadstream.h	/^    bool eof_;$/;"	m	class:FileReadStream
-escaffer6_func	cec14_test_func.cpp	/^void escaffer6_func (double *x, double *f, int nx, double *Os,double *Mr,int s_flag, int r_flag) \/* Expanded Scaffer??s F6  *\/$/;"	f
-f	include/functions.h	/^		inline double f(const vector<double>&xs){$/;"	f	class:Function
+escaffer6_func	include/cec14_test_func.h	/^void escaffer6_func (double *x, double *f, int nx, double *Os,double *Mr,int s_flag, int r_flag) \/* Expanded Scaffer??s F6  *\/$/;"	f
+f	include/functions.h	/^		inline double f(vector<double>&xs){$/;"	f	class:Function
 f	include/rapidjson/internal/diyfp.h	/^    uint64_t f;$/;"	m	struct:internal::DiyFp
 f	pde.cpp	/^		Function *f;$/;"	m	class:DE	file:
 fbest	include/functions.h	/^		double fbest;$/;"	m	class:Function
@@ -1335,7 +1340,7 @@ fp_	include/rapidjson/filereadstream.h	/^    std::FILE* fp_;$/;"	m	class:FileRea
 fp_	include/rapidjson/filewritestream.h	/^    std::FILE* fp_;$/;"	m	class:FileWriteStream
 fs	include/functions.h	/^		vector<Function*>fs;$/;"	m	class:FunctionFactory
 funName	include/functions.h	/^		char funName[MAX_FUNCTION_NAME];$/;"	m	class:Function
-func_flag	main.cpp	/^int ini_flag=0,n_flag,func_flag,*SS;$/;"	v
+func_flag	include/cec14_test_func.h	/^int ini_flag,n_flag,func_flag,*SS;$/;"	v
 fx	pde.cpp	/^		vector<double>fx;$/;"	m	class:DE	file:
 gaussrand	include/utils.h	/^double gaussrand()$/;"	f
 generate	include/utils.h	/^		void generate(){$/;"	f	class:RandomPermutation
@@ -1343,6 +1348,7 @@ getAlgorithmName	pde.cpp	/^		const char *getAlgorithmName()const{$/;"	f	class:DE
 getAuthorInfo	include/settingParser.h	/^		void getAuthorInfo(const char *name,char *info){$/;"	f	class:SettingParser
 getBest	include/functions.h	/^		double getBest()const{return fbest;}$/;"	f	class:Function
 getBiVector	include/settingParser.h	/^		void getBiVector(const char *name,vector<vector<double> >&arr)const{$/;"	f	class:SettingParser
+getBiVector	include/settingParser.h	/^		void getBiVector(const char *name,vector<vector<int> >&arr)const{$/;"	f	class:SettingParser
 getDouble	include/settingParser.h	/^		double getDouble(const char *name)const{$/;"	f	class:SettingParser
 getFunction	include/functions.h	/^		Function*getFunction(int index)const{$/;"	f	class:FunctionFactory
 getInt	include/settingParser.h	/^		int getInt(const char *name)const{$/;"	f	class:SettingParser
@@ -1358,23 +1364,24 @@ getShortName	include/functions.h	/^		const char *getShortName()const{return shor
 getString	include/settingParser.h	/^		void getString(const char *name,char *dest)const {$/;"	f	class:SettingParser
 getTimeMs	include/utils.h	/^		inline static long getTimeMs(){$/;"	f	class:Tic
 getVector	include/settingParser.h	/^		void getVector(const char *name,vector<double>&arr)const{$/;"	f	class:SettingParser
+getVector	include/settingParser.h	/^		void getVector(const char *name,vector<int>&arr)const{$/;"	f	class:SettingParser
 getfeCounter	include/functions.h	/^		int getfeCounter()const{return feCounter;}$/;"	f	class:Function
-grie_rosen_func	cec14_test_func.cpp	/^void grie_rosen_func (double *x, double *f, int nx, double *Os,double *Mr,int s_flag, int r_flag) \/* Griewank-Rosenbrock  *\/$/;"	f
-griewank_func	cec14_test_func.cpp	/^void griewank_func (double *x, double *f, int nx, double *Os,double *Mr,int s_flag, int r_flag) \/* Griewank's  *\/$/;"	f
-happycat_func	cec14_test_func.cpp	/^void happycat_func (double *x, double *f, int nx, double *Os,double *Mr,int s_flag, int r_flag) \/* HappyCat, provdided by Hans-Georg Beyer (HGB) *\/$/;"	f
+grie_rosen_func	include/cec14_test_func.h	/^void grie_rosen_func (double *x, double *f, int nx, double *Os,double *Mr,int s_flag, int r_flag) \/* Griewank-Rosenbrock  *\/$/;"	f
+griewank_func	include/cec14_test_func.h	/^void griewank_func (double *x, double *f, int nx, double *Os,double *Mr,int s_flag, int r_flag) \/* Griewank's  *\/$/;"	f
+happycat_func	include/cec14_test_func.h	/^void happycat_func (double *x, double *f, int nx, double *Os,double *Mr,int s_flag, int r_flag) \/* HappyCat, provdided by Hans-Georg Beyer (HGB) *\/$/;"	f
 hasBOM_	include/rapidjson/encodedstream.h	/^    bool hasBOM_;$/;"	m	class:AutoUTFInputStream
 hasRoot_	include/rapidjson/writer.h	/^    bool hasRoot_;$/;"	m	class:Writer
 hashcode	include/rapidjson/document.h	/^        unsigned hashcode;  \/\/!< reserved$/;"	m	struct:GenericValue::String
 head_	include/rapidjson/pointer.h	/^        const Ch* head_;    \/\/!< Original head of the string.$/;"	m	class:GenericPointer::PercentDecodeStream
 head_	include/rapidjson/rapidjson.h	/^    Ch* head_;$/;"	m	struct:GenericInsituStringStream
 head_	include/rapidjson/rapidjson.h	/^    const Ch* head_;    \/\/!< Original head of the string.$/;"	m	struct:GenericStringStream
-hf01	cec14_test_func.cpp	/^void hf01 (double *x, double *f, int nx, double *Os,double *Mr,int *S,int s_flag,int r_flag) \/* Hybrid Function 1 *\/$/;"	f
-hf02	cec14_test_func.cpp	/^void hf02 (double *x, double *f, int nx, double *Os,double *Mr,int *S,int s_flag,int r_flag) \/* Hybrid Function 2 *\/$/;"	f
-hf03	cec14_test_func.cpp	/^void hf03 (double *x, double *f, int nx, double *Os,double *Mr,int *S,int s_flag,int r_flag) \/* Hybrid Function 3 *\/$/;"	f
-hf04	cec14_test_func.cpp	/^void hf04 (double *x, double *f, int nx, double *Os,double *Mr,int *S,int s_flag,int r_flag) \/* Hybrid Function 4 *\/$/;"	f
-hf05	cec14_test_func.cpp	/^void hf05 (double *x, double *f, int nx, double *Os,double *Mr,int *S,int s_flag,int r_flag) \/* Hybrid Function 5 *\/$/;"	f
-hf06	cec14_test_func.cpp	/^void hf06 (double *x, double *f, int nx, double *Os,double *Mr,int *S,int s_flag,int r_flag) \/* Hybrid Function 6 *\/$/;"	f
-hgbat_func	cec14_test_func.cpp	/^void hgbat_func (double *x, double *f, int nx, double *Os,double *Mr,int s_flag, int r_flag) \/* HGBat, provdided by Hans-Georg Beyer (HGB)*\/$/;"	f
+hf01	include/cec14_test_func.h	/^void hf01 (double *x, double *f, int nx, double *Os,double *Mr,int *S,int s_flag,int r_flag) \/* Hybrid Function 1 *\/$/;"	f
+hf02	include/cec14_test_func.h	/^void hf02 (double *x, double *f, int nx, double *Os,double *Mr,int *S,int s_flag,int r_flag) \/* Hybrid Function 2 *\/$/;"	f
+hf03	include/cec14_test_func.h	/^void hf03 (double *x, double *f, int nx, double *Os,double *Mr,int *S,int s_flag,int r_flag) \/* Hybrid Function 3 *\/$/;"	f
+hf04	include/cec14_test_func.h	/^void hf04 (double *x, double *f, int nx, double *Os,double *Mr,int *S,int s_flag,int r_flag) \/* Hybrid Function 4 *\/$/;"	f
+hf05	include/cec14_test_func.h	/^void hf05 (double *x, double *f, int nx, double *Os,double *Mr,int *S,int s_flag,int r_flag) \/* Hybrid Function 5 *\/$/;"	f
+hf06	include/cec14_test_func.h	/^void hf06 (double *x, double *f, int nx, double *Os,double *Mr,int *S,int s_flag,int r_flag) \/* Hybrid Function 6 *\/$/;"	f
+hgbat_func	include/cec14_test_func.h	/^void hgbat_func (double *x, double *f, int nx, double *Os,double *Mr,int s_flag, int r_flag) \/* HGBat, provdided by Hans-Georg Beyer (HGB)*\/$/;"	f
 i	include/rapidjson/document.h	/^            int i;$/;"	m	struct:GenericValue::Number::I
 i	include/rapidjson/document.h	/^        }i;$/;"	m	union:GenericValue::Number	typeref:struct:GenericValue::Number::I
 i	include/utils.h	/^	int i;$/;"	m	class:RandomPermutation
@@ -1388,7 +1395,9 @@ inArray	include/rapidjson/writer.h	/^        bool inArray;       \/\/!< true if 
 indentCharCount_	include/rapidjson/prettywriter.h	/^    unsigned indentCharCount_;$/;"	m	class:PrettyWriter
 indentChar_	include/rapidjson/prettywriter.h	/^    Ch indentChar_;$/;"	m	class:PrettyWriter
 index	include/rapidjson/pointer.h	/^        SizeType index;             \/\/!< A valid array index, if it is not equal to kPointerInvalidIndex.$/;"	m	struct:GenericPointer::Token
-ini_flag	main.cpp	/^int ini_flag=0,n_flag,func_flag,*SS;$/;"	v
+ini_flag	include/cec14_test_func.h	/^int ini_flag,n_flag,func_flag,*SS;$/;"	v
+init	include/functions.h	/^		virtual void init(int numDim){$/;"	f	class:FunctionFactory
+init	include/functions.h	/^		virtual void init(int numDim){$/;"	f	class:FunctionFactoryMy
 init	pde.cpp	/^		void init(int algorithm,int numP){$/;"	f	class:DE
 initialCapacity_	include/rapidjson/internal/stack.h	/^    size_t initialCapacity_;$/;"	m	class:internal::Stack
 instance	include/functions.h	/^		static FunctionFactory*instance;$/;"	m	class:FunctionFactory
@@ -1426,7 +1435,7 @@ intptr_t	include/rapidjson/msinttypes/stdint.h	/^   typedef _W64 signed int   in
 intptr_t	include/rapidjson/msinttypes/stdint.h	/^   typedef signed __int64    intptr_t;$/;"	t
 is	include/rapidjson/reader.h	/^        InputStream& is;$/;"	m	class:GenericReader::NumberStream
 isFBetter	include/functions.h	/^		inline bool isFBetter(double a,double b){$/;"	f	class:Function
-isFBetter	pde.cpp	/^		inline bool isFBetter(double fx1,double fx2){$/;"	f	class:DE
+isFBetter	pde.cpp	/^		inline bool isFBetter(double fx1,double fx2){$/;"	f	class:DE	file:
 isFindMin	include/functions.h	/^		bool isFindMin;$/;"	m	class:Function
 isFindMin	pde.cpp	/^		bool isFindMin;$/;"	m	class:DE	file:
 is_	include/rapidjson/encodedstream.h	/^    InputByteStream& is_;$/;"	m	class:EncodedInputStream
@@ -1530,7 +1539,7 @@ kUTF32LE	include/rapidjson/encodings.h	/^    kUTF32LE = 3,   \/\/!< UTF-32 littl
 kUTF8	include/rapidjson/encodings.h	/^    kUTF8 = 0,      \/\/!< UTF-8.$/;"	e	enum:UTFType
 kUint64Flag	include/rapidjson/document.h	/^        kUint64Flag = 0x2000,$/;"	e	enum:GenericValue::__anon13
 kUintFlag	include/rapidjson/document.h	/^        kUintFlag = 0x800,$/;"	e	enum:GenericValue::__anon13
-katsuura_func	cec14_test_func.cpp	/^void katsuura_func (double *x, double *f, int nx, double *Os,double *Mr,int s_flag, int r_flag) \/* Katsuura  *\/$/;"	f
+katsuura_func	include/cec14_test_func.h	/^void katsuura_func (double *x, double *f, int nx, double *Os,double *Mr,int s_flag, int r_flag) \/* Katsuura  *\/$/;"	f
 lastTime	include/utils.h	/^		static long lastTime;$/;"	m	class:Tic
 lastTime	include/utils.h	/^long Tic::lastTime=0;$/;"	m	class:Tic
 length	include/rapidjson/document.h	/^        SizeType length;$/;"	m	struct:GenericValue::String
@@ -1545,7 +1554,7 @@ mul	include/functions.h	/^	double mul=1.0;$/;"	v
 mulcos	include/functions.h	/^	double mulcos=1.0;$/;"	v
 n	include/rapidjson/document.h	/^        Number n;$/;"	m	union:GenericValue::Data
 n	include/utils.h	/^	int n;$/;"	m	class:RandomPermutation
-n_flag	main.cpp	/^int ini_flag=0,n_flag,func_flag,*SS;$/;"	v
+n_flag	include/cec14_test_func.h	/^int ini_flag,n_flag,func_flag,*SS;$/;"	v
 name	include/rapidjson/document.h	/^    GenericValue<Encoding, Allocator> name;     \/\/!< name of member (must be a string)$/;"	m	struct:GenericMember
 name	include/rapidjson/pointer.h	/^        const Ch* name;             \/\/!< Name of the token. It has null character at the end but it can contain null character.$/;"	m	struct:GenericPointer::Token
 nameBuffer_	include/rapidjson/pointer.h	/^    Ch* nameBuffer_;                        \/\/!< A buffer containing all names in tokens.$/;"	m	class:GenericPointer
@@ -1556,14 +1565,13 @@ numDim	pde.cpp	/^		int numDim;$/;"	m	class:DE	file:
 numP	pde.cpp	/^		int numP;$/;"	m	class:DE	file:
 o	include/rapidjson/document.h	/^        Object o;$/;"	m	union:GenericValue::Data
 offset_	include/rapidjson/error/error.h	/^    size_t offset_;$/;"	m	struct:ParseResult
-old_main	main.cpp	/^int old_main()$/;"	f
 operator !=	include/rapidjson/document.h	/^    bool operator!=(ConstIterator that) const { return ptr_ != that.ptr_; }$/;"	f	class:GenericMemberIterator
 operator !=	include/rapidjson/document.h	/^    bool operator!=(const Ch* rhs) const { return !(*this == rhs); }$/;"	f	class:GenericValue
 operator !=	include/rapidjson/document.h	/^    bool operator!=(const GenericValue<Encoding, SourceAllocator>& rhs) const { return !(*this == rhs); }$/;"	f	class:GenericValue
 operator !=	include/rapidjson/document.h	/^    template <typename T> RAPIDJSON_DISABLEIF_RETURN((internal::IsGenericValue<T>), (bool)) operator!=(const T& rhs) const { return !(*this == rhs); }$/;"	f	class:GenericValue
 operator !=	include/rapidjson/document.h	/^    template <typename T> friend RAPIDJSON_DISABLEIF_RETURN((internal::IsGenericValue<T>), (bool)) operator!=(const T& lhs, const GenericValue& rhs) { return !(rhs == lhs); }$/;"	f	class:GenericValue
 operator !=	include/rapidjson/pointer.h	/^    bool operator!=(const GenericPointer& rhs) const { return !(*this == rhs); }$/;"	f	class:GenericPointer
-operator ()	include/functions.h	/^		virtual double operator()(const double *xs,int size){$/;"	f	class:Function
+operator ()	include/functions.h	/^		virtual double operator()(double *xs,int size){$/;"	f	class:Function
 operator *	include/rapidjson/document.h	/^    Reference operator*() const { return *ptr_; }$/;"	f	class:GenericMemberIterator
 operator *	include/rapidjson/internal/diyfp.h	/^    DiyFp operator*(const DiyFp& rhs) const {$/;"	f	struct:internal::DiyFp
 operator *=	include/rapidjson/internal/biginteger.h	/^    BigInteger& operator*=(uint32_t u) {$/;"	f	class:internal::BigInteger
@@ -1620,7 +1628,7 @@ os_	include/rapidjson/encodedstream.h	/^    OutputByteStream& os_;$/;"	m	class:E
 os_	include/rapidjson/encodedstream.h	/^    OutputByteStream* os_;$/;"	m	class:AutoUTFOutputStream
 os_	include/rapidjson/pointer.h	/^        OutputStream& os_;$/;"	m	class:GenericPointer::PercentEncodeStream
 os_	include/rapidjson/writer.h	/^    OutputStream* os_;$/;"	m	class:Writer
-oszfunc	cec14_test_func.cpp	/^void oszfunc (double *x, double *xosz, int nx)$/;"	f
+oszfunc	include/cec14_test_func.h	/^void oszfunc (double *x, double *xosz, int nx)$/;"	f
 ownAllocator_	include/rapidjson/document.h	/^    Allocator* ownAllocator_;$/;"	m	class:GenericDocument
 ownAllocator_	include/rapidjson/internal/stack.h	/^    Allocator* ownAllocator_;$/;"	m	class:internal::Stack
 ownAllocator_	include/rapidjson/pointer.h	/^    Allocator* ownAllocator_;               \/\/!< Allocator owned by this Pointer.$/;"	m	class:GenericPointer
@@ -1634,37 +1642,36 @@ parseFile	include/settingParser.h	/^		void parseFile(const char *s){$/;"	f	class
 parseResult_	include/rapidjson/document.h	/^          parseResult_(rhs.parseResult_)$/;"	f	class:GenericDocument
 parseResult_	include/rapidjson/document.h	/^    ParseResult parseResult_;$/;"	m	class:GenericDocument
 parseResult_	include/rapidjson/reader.h	/^    ParseResult parseResult_;$/;"	m	class:GenericReader
-popInit	pde.cpp	/^		void popInit(){$/;"	f	class:DE
 printArr	include/utils.h	/^void printArr(int *arr,int size){$/;"	f
 printVec	include/utils.h	/^void printVec(const vector<T>&arr){$/;"	f
 ptr_	include/rapidjson/document.h	/^    Pointer ptr_; \/\/!< raw pointer$/;"	m	class:GenericMemberIterator
 putFunc_	include/rapidjson/encodedstream.h	/^    PutFunc putFunc_;$/;"	m	class:AutoUTFOutputStream
 quot	include/rapidjson/msinttypes/inttypes.h	/^   intmax_t quot;$/;"	m	struct:__anon12
 r_	include/rapidjson/reader.h	/^        GenericReader& r_;$/;"	m	struct:GenericReader::ClearStackOnExit
-rastrigin_func	cec14_test_func.cpp	/^void rastrigin_func (double *x, double *f, int nx, double *Os,double *Mr,int s_flag, int r_flag) \/* Rastrigin's  *\/$/;"	f
+rastrigin_func	include/cec14_test_func.h	/^void rastrigin_func (double *x, double *f, int nx, double *Os,double *Mr,int s_flag, int r_flag) \/* Rastrigin's  *\/$/;"	f
 readCount_	include/rapidjson/filereadstream.h	/^    size_t readCount_;$/;"	m	class:FileReadStream
 rem	include/rapidjson/msinttypes/inttypes.h	/^   intmax_t rem;$/;"	m	struct:__anon12
 res	include/functions.h	/^	double res=0.0;$/;"	v
 res	include/functions.h	/^	double res=fabs(xs[0]);$/;"	v
-rosenbrock_func	cec14_test_func.cpp	/^void rosenbrock_func (double *x, double *f, int nx, double *Os,double *Mr,int s_flag, int r_flag) \/* Rosenbrock's *\/$/;"	f
-rotatefunc	cec14_test_func.cpp	/^void rotatefunc (double *x, double *xrot, int nx,double *Mr)$/;"	f
+rosenbrock_func	include/cec14_test_func.h	/^void rosenbrock_func (double *x, double *f, int nx, double *Os,double *Mr,int s_flag, int r_flag) \/* Rosenbrock's *\/$/;"	f
+rotatefunc	include/cec14_test_func.h	/^void rotatefunc (double *x, double *xrot, int nx,double *Mr)$/;"	f
 runPDE	pde.cpp	/^vector<double> runPDE(int id,int idSize,Function*f,int maxRun){$/;"	f
 runSerialDE	pde.cpp	/^vector<double> runSerialDE(DE &de,Function*f,int maxRun){$/;"	f
 s	include/rapidjson/document.h	/^        String s;$/;"	m	union:GenericValue::Data
 s	include/rapidjson/document.h	/^    const Ch* const s; \/\/!< plain CharType pointer$/;"	m	struct:GenericStringRef
 s	include/rapidjson/reader.h	/^    Stream s;$/;"	m	class:internal::StreamLocalCopy
 s	include/rapidjson/reader.h	/^    Stream& s;$/;"	m	class:internal::StreamLocalCopy
-schaffer_F7_func	cec14_test_func.cpp	/^void schaffer_F7_func (double *x, double *f, int nx, double *Os,double *Mr,int s_flag, int r_flag) \/* Schwefel's 1.2  *\/$/;"	f
-schwefel_func	cec14_test_func.cpp	/^void schwefel_func (double *x, double *f, int nx, double *Os,double *Mr,int s_flag, int r_flag) \/* Schwefel's  *\/$/;"	f
-shiftfunc	cec14_test_func.cpp	/^void shiftfunc (double *x, double *xshift, int nx,double *Os)$/;"	f
+schaffer_F7_func	include/cec14_test_func.h	/^void schaffer_F7_func (double *x, double *f, int nx, double *Os,double *Mr,int s_flag, int r_flag) \/* Schwefel's 1.2  *\/$/;"	f
+schwefel_func	include/cec14_test_func.h	/^void schwefel_func (double *x, double *f, int nx, double *Os,double *Mr,int s_flag, int r_flag) \/* Schwefel's  *\/$/;"	f
+shiftfunc	include/cec14_test_func.h	/^void shiftfunc (double *x, double *xshift, int nx,double *Os)$/;"	f
 shortName	include/functions.h	/^		char shortName[50];$/;"	m	class:Function
 size	include/rapidjson/allocators.h	/^        size_t size;        \/\/!< Current size of allocated memory in bytes.$/;"	m	struct:MemoryPoolAllocator::ChunkHeader
 size	include/rapidjson/document.h	/^        SizeType size;$/;"	m	struct:GenericValue::Array
 size	include/rapidjson/document.h	/^        SizeType size;$/;"	m	struct:GenericValue::Object
 size_	include/rapidjson/memorystream.h	/^    size_t size_;       \/\/!< Size of the stream.$/;"	m	struct:MemoryStream
 solve	pde.cpp	/^		void solve(Function* f,int maxGeneration,vector<double>&bestX,double &bestF){$/;"	f	class:DE
-sphere_func	cec14_test_func.cpp	/^void sphere_func (double *x, double *f, int nx, double *Os, double *Mr, int s_flag, int r_flag) \/* Sphere *\/$/;"	f
-sr_func	cec14_test_func.cpp	/^void sr_func (double *x, double *sr_x, int nx, double *Os,double *Mr, double sh_rate, int s_flag,int r_flag) \/* shift and rotate *\/$/;"	f
+sphere_func	include/cec14_test_func.h	/^void sphere_func (double *x, double *f, int nx, double *Os, double *Mr, int s_flag, int r_flag) \/* Sphere *\/$/;"	f
+sr_func	include/cec14_test_func.h	/^void sr_func (double *x, double *sr_x, int nx, double *Os,double *Mr, double sh_rate, int s_flag,int r_flag) \/* shift and rotate *\/$/;"	f
 src_	include/rapidjson/memorystream.h	/^    const Ch* src_;     \/\/!< Current read position.$/;"	m	struct:MemoryStream
 src_	include/rapidjson/pointer.h	/^        const Ch* src_;     \/\/!< Current read position.$/;"	m	class:GenericPointer::PercentDecodeStream
 src_	include/rapidjson/rapidjson.h	/^    Ch* src_;$/;"	m	struct:GenericInsituStringStream
@@ -1679,7 +1686,7 @@ stack_	include/rapidjson/memorybuffer.h	/^    mutable internal::Stack<Allocator>
 stack_	include/rapidjson/reader.h	/^        internal::Stack<StackAllocator>& stack_;$/;"	m	class:GenericReader::StackStream
 stack_	include/rapidjson/reader.h	/^    internal::Stack<StackAllocator> stack_;  \/\/!< A stack for storing decoded string temporarily during non-destructive parsing.$/;"	m	class:GenericReader
 stack_	include/rapidjson/stringbuffer.h	/^    mutable internal::Stack<Allocator> stack_;$/;"	m	class:GenericStringBuffer
-step_rastrigin_func	cec14_test_func.cpp	/^void step_rastrigin_func (double *x, double *f, int nx, double *Os,double *Mr,int s_flag, int r_flag) \/* Noncontinuous Rastrigin's  *\/$/;"	f
+step_rastrigin_func	include/cec14_test_func.h	/^void step_rastrigin_func (double *x, double *f, int nx, double *Os,double *Mr,int s_flag, int r_flag) \/* Noncontinuous Rastrigin's  *\/$/;"	f
 str	include/rapidjson/document.h	/^        Ch str[MaxChars];$/;"	m	struct:GenericValue::ShortString
 str	include/rapidjson/document.h	/^        const Ch* str;$/;"	m	struct:GenericValue::String
 strtoimax	include/rapidjson/msinttypes/inttypes.h	307;"	d
@@ -1733,7 +1740,7 @@ uintptr_t	include/rapidjson/msinttypes/stdint.h	/^   typedef _W64 unsigned int u
 uintptr_t	include/rapidjson/msinttypes/stdint.h	/^   typedef unsigned __int64  uintptr_t;$/;"	t
 unused_main	pde.cpp	/^int unused_main(int argc,char *argv[]){$/;"	f
 update	pde.cpp	/^		void update(int maxGeneration){$/;"	f	class:DE
-updateX	pde.cpp	/^		void updateX(){$/;"	f	class:DE
+updateX	pde.cpp	/^		void updateX(){$/;"	f	class:DE	file:
 userBuffer_	include/rapidjson/allocators.h	/^    void *userBuffer_;          \/\/!< User supplied buffer.$/;"	m	class:MemoryPoolAllocator
 valid_	include/rapidjson/pointer.h	/^        bool valid_;        \/\/!< Whether the parsing is valid.$/;"	m	class:GenericPointer::PercentDecodeStream
 value	include/rapidjson/document.h	/^    GenericValue<Encoding, Allocator> value;    \/\/!< value of member.$/;"	m	struct:GenericMember
@@ -1741,20 +1748,20 @@ value	include/rapidjson/rapidjson.h	/^template <> struct STATIC_ASSERTION_FAILUR
 valueCount	include/rapidjson/writer.h	/^        size_t valueCount;  \/\/!< number of values in this level$/;"	m	struct:Writer::Level
 wcstoimax	include/rapidjson/msinttypes/inttypes.h	311;"	d
 wcstoumax	include/rapidjson/msinttypes/inttypes.h	312;"	d
-weierstrass_func	cec14_test_func.cpp	/^void weierstrass_func (double *x, double *f, int nx, double *Os,double *Mr,int s_flag, int r_flag) \/* Weierstrass's  *\/$/;"	f
+weierstrass_func	include/cec14_test_func.h	/^void weierstrass_func (double *x, double *f, int nx, double *Os,double *Mr,int s_flag, int r_flag) \/* Weierstrass's  *\/$/;"	f
 x	pde.cpp	/^		vector<vector<double> >x;\/\/x,trail x.$/;"	m	class:DE	file:
-x_bound	main.cpp	/^double *OShift,*M,*y,*z,*x_bound;$/;"	v
+x_bound	include/cec14_test_func.h	/^double *OShift,*M,*y,*z,*x_bound;$/;"	v
 xd	include/functions.h	/^double xd=xs[size-1];$/;"	v
 xlow	include/functions.h	/^		double xlow,xup;$/;"	m	class:Function
 xmax	pde.cpp	/^		double xmax;$/;"	m	class:DE	file:
 xmin	pde.cpp	/^		double xmin;$/;"	m	class:DE	file:
 xup	include/functions.h	/^		double xlow,xup;$/;"	m	class:Function
-y	main.cpp	/^double *OShift,*M,*y,*z,*x_bound;$/;"	v
+y	include/cec14_test_func.h	/^double *OShift,*M,*y,*z,*x_bound;$/;"	v
 y1	include/functions.h	/^	double y1=1.0+(xs[0]+1.0)\/4.0;$/;"	v
 yd	include/functions.h	/^	double yd=1.0+(xs[size-1]+1.0)\/4.0;$/;"	v
 yi	include/functions.h	/^	double yi,yi1;$/;"	v
 yi1	include/functions.h	/^	double yi,yi1;$/;"	v
-z	main.cpp	/^double *OShift,*M,*y,*z,*x_bound;$/;"	v
+z	include/cec14_test_func.h	/^double *OShift,*M,*y,*z,*x_bound;$/;"	v
 ~ClearStackOnExit	include/rapidjson/document.h	/^        ~ClearStackOnExit() { d_.ClearStack(); }$/;"	f	struct:GenericDocument::ClearStackOnExit
 ~ClearStackOnExit	include/rapidjson/reader.h	/^        ~ClearStackOnExit() { r_.ClearStack(); }$/;"	f	struct:GenericReader::ClearStackOnExit
 ~FunctionFactory	include/functions.h	/^		~FunctionFactory(){$/;"	f	class:FunctionFactory

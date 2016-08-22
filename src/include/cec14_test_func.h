@@ -6,6 +6,9 @@
 
 
 //#include <WINDOWS.H>      
+#ifdef CEC2015_TEST_FUNCTION
+#else
+#define CEC2015_TEST_FUNCTION
 #include <stdio.h>
 #include <math.h>
 #include <malloc.h>
@@ -58,8 +61,8 @@ void asyfunc (double *, double *x, int, double);
 void oszfunc (double *, double *, int);
 void cf_cal(double *, double *, int, double *,double *,double *,double *,int);
 
-extern double *OShift,*M,*y,*z,*x_bound;
-extern int ini_flag,n_flag,func_flag,*SS;
+double *OShift,*M,*y,*z,*x_bound;
+int ini_flag,n_flag,func_flag,*SS;
 
 
 void cec14_test_func(double *x, double *f, int nx, int mx,int func_num)
@@ -1313,3 +1316,5 @@ void cf_cal(double *x, double *f, int nx, double *Os,double * delta,double * bia
     }
 	free(w);
 }
+#endif
+

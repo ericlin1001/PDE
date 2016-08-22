@@ -59,6 +59,14 @@ class SettingParser{
 				arr[i]=a[i].GetDouble();
 			}
 		}
+		void getVector(const char *name,vector<int>&arr)const{
+			const Value&a=doc[name];
+			assert(a.IsArray());
+			arr.resize(a.Size());
+			for(SizeType i=0;i<a.Size();i++){
+				arr[i]=a[i].GetInt();
+			}
+		}
 		void getBiVector(const char *name,vector<vector<double> >&arr)const{
 			const Value&a=doc[name];
 			assert(a.IsArray());
@@ -70,6 +78,20 @@ class SettingParser{
 				sarr.resize(sa.Size());
 				for(SizeType j=0;j<sa.Size();j++){
 					sarr[j]=sa[j].GetDouble();
+				}
+			}
+		}
+		void getBiVector(const char *name,vector<vector<int> >&arr)const{
+			const Value&a=doc[name];
+			assert(a.IsArray());
+			arr.resize(a.Size());
+			for(SizeType i=0;i<a.Size();i++){
+				const Value&sa=a[i];
+				assert(sa.IsArray());
+				vector<int>&sarr=arr[i];
+				sarr.resize(sa.Size());
+				for(SizeType j=0;j<sa.Size();j++){
+					sarr[j]=sa[j].GetInt();
 				}
 			}
 		}

@@ -71,24 +71,67 @@ class DE{
 		double F,CR;//algorithm related parameters.
 		//
 		char algorithmName[100];
-	public:
-		const char *getAlgorithmName()const{
-			/*
-			switch(algorithm){
-				case 0:return "DE1/best/0.1";
-				case 1:return "DE2/best/0.9";
-				case 2:return "DE3/rand/0.1";
-				case 3:return "DE4/rand/0.9";
-				case 4:return "PDE/DE1,DE2,DE3,DE4/AMS";
-			}
-			*/
-			return algorithmName;
-		}
 		inline bool isFBetter(double fx1,double fx2){
 			return f->isFBetter(fx1,fx2);
 		}
+	private:
+		void calculateBestIndex(){
+			bestI=0;
+			for(int i=0;i<numP;i++){
+				if(isFBetter(fx[i],fx[bestI])){
+					bestI=i;
+				}
+			}
+		}
+		void updateX(){
+			ASSERT(numP>=3);
+			RandomPermutation perm(numP);
+			for(int i=0;i<numP;i++){
+				perm.generate();
+				int a; int b=perm.next(); int c=perm.next();
+				if(algorithm==0||algorithm==1){
+					//DE0,DE1
+					a=bestI;
+				}else{
+					a=perm.next();
+				}
+				int randDim=rand()%numDim;
+				for(int j=0;j<numDim;j++){
+					if(j==randDim||drand()<CR){
+						tx[j]=x[a][j]+F*(x[b][j]-x[c][j]);
+						if(tx[j]<xmin || tx[j]>xmax){
+							tx[j]=drand(xmin,xmax);
+						}
+					}else{
+						tx[j]=x[i][j];
+					}
+				}
+				double ftx=(*f)(&tx[0],tx.size());
+				if(isFBetter(ftx,fx[i])){
+					x[i]=tx;
+					fx[i]=ftx;
+					if(isFBetter(ftx,fx[bestI])){
+						bestI=i;
+					}
+				}
+			}
+		}
+	public:
+		const char *getAlgorithmName()const{
+			return algorithmName;
+		}
+		int getNumP()const{return numP;}
+		double getMeanF()const{
+			double avg=0;
+			for(int i=0;i<numP;i++){
+				avg+=fx[i];
+			}
+			ASSERT(numP>0);
+			avg/=(double)numP;
+			return avg;
+		}
+		//
 		void init(int algorithm,int numP){
-			//Notice:use numP FEs
 			this->algorithm=algorithm;
 			this->numP=numP;
 			F=0.5;
@@ -114,26 +157,12 @@ class DE{
 			this->f=f;
 			numDim=f->getNumDim();
 			isFindMin=f->getIsFindMin();
-		xmin=f->getRange(0);
-		xmax=f->getRange(1);
-			popInit();
-		}
-		void update(int maxGeneration){
-			for(int g=1;g<=maxGeneration;g++){
-				updateX();
-			}
-		}
-		void solve(Function* f,int maxGeneration,vector<double>&bestX,double &bestF){
-			begin(f);
-			update(maxGeneration);
-			getOutput(bestX,bestF);
-		}
-
-		void popInit(){
-			tx.resize(numDim);
+			xmin=f->getRange(0);
+			xmax=f->getRange(1);
+			//population initializing....
 			//allocate space.
+			tx.resize(numDim);
 			x.resize(numP);
-			//
 			fx.resize(numP);
 			for(int i=0;i<numP;i++){
 				x[i].resize(numDim);
@@ -149,68 +178,19 @@ class DE{
 				}
 			}
 		}
-		//not used.
-		void calBestI(){
-			bestI=0;
-			for(int i=0;i<numP;i++){
-				if(isFBetter(fx[i],fx[bestI])){
-					bestI=i;
-				}
+		void update(int maxGeneration){
+			for(int g=1;g<=maxGeneration;g++){
+				updateX();
 			}
 		}
-		void updateX(){
-//			cin.get();
-			ASSERT(numP>=3);
-			RandomPermutation perm(numP);
-			//for next generation:
-//			tmpX=x;
-//			tmpFx=fx;
-//			int tmpBestI=bestI;
-//			cout<<endl;
-//			cout<<"next generation:"<<endl;
-			for(int i=0;i<numP;i++){
-				perm.generate();
-				int a; int b=perm.next(); int c=perm.next();
-				if(algorithm==0||algorithm==1){
-					//DE0,DE1
-					a=bestI;
-				}else{
-					a=perm.next();
-				}
-				int randDim=rand()%numDim;
-				for(int j=0;j<numDim;j++){
-					if(j==randDim||drand()<CR){
-						tx[j]=x[a][j]+F*(x[b][j]-x[c][j]);
-						if(tx[j]<xmin || tx[j]>xmax){
-							tx[j]=drand(xmin,xmax);
-						}
-					}else{
-						tx[j]=x[i][j];
-					}
-				}
-				double ftx=(*f)(&tx[0],tx.size());
-				if(isFBetter(ftx,fx[i])){
-//	tmpX[i]=tx;
-//	tmpFx[i]=ftx;
-					x[i]=tx;
-					fx[i]=ftx;
-//					cout<<"Update i:"<<i<<endl;
-//					cout<<"pop["<<i<<"]:";printVec(x[i]);cout<<endl;
-//					if(ftx>tmpFx[tmpBestI]){
-					if(isFBetter(ftx,fx[bestI])){
-//						tmpBestI=i;
-						bestI=i;
-//						Trace(bestI);
-					}
-				}
-			}
-//			ASSERT(fx[bestI]>=tmpFx[tmpBestI]);
-//			x=tmpX;
-//			fx=tmpFx;
-//			cout<<"fx:";printVec(fx);
-//			cout<<endl;
-//			bestI=tmpBestI;
-//			Trace(fx[bestI]);
+		void getOutput(vector<double>&bestX,double &bestF){
+			bestX=x[bestI];
+			bestF=fx[bestI];
+		}
+		void solve(Function* f,int maxGeneration,vector<double>&bestX,double &bestF){
+			begin(f);
+			update(maxGeneration);
+			getOutput(bestX,bestF);
 		}
 		vector<double>del(int i){
 			ASSERT(i>=0 && i<numP);
@@ -223,7 +203,7 @@ class DE{
 			//
 			numP--;
 			if(bestI==i){
-				calBestI();
+				calculateBestIndex();
 			}
 			ASSERT(numP>1);
 			ASSERT(x.size()==numP&&fx.size()==numP);
@@ -231,8 +211,6 @@ class DE{
 		}
 		void add(const vector<double>&XF){
 			ASSERT(XF.size()==numDim+1);
-			//x.resize(numP+1);
-			//fx.resize(numP+1);
 			x.push_back(XF);
 			fx.push_back(XF.back());
 			x[numP].pop_back();
@@ -243,25 +221,7 @@ class DE{
 			numP++;
 			ASSERT(x.size()==numP&&fx.size()==numP);
 		}
-		int getNumP()const{return numP;}
-		void getOutput(vector<double>&bestX,double &bestF){
-			bestX=x[bestI];
-			bestF=fx[bestI];
-		}
-		//double meanF;
-		double getMeanF()const{
-			double avg=0;
-			for(int i=0;i<numP;i++){
-				avg+=fx[i];
-			}
-			ASSERT(numP>0);
-			avg/=(double)numP;
-			return avg;
-		}
 };
-
-/*
-*/
 
 #if ALGORITHM==4
 int PDE(int processId,int numProcess,Function*f,vector<double>&bestX,double &bestF){
@@ -283,7 +243,6 @@ int PDE(int processId,int numProcess,Function*f,vector<double>&bestX,double &bes
 	}
 	ASSERT(NumAlgorithm>0);
 	const int MaxGeneration=MaxFE/(NumAlgorithm*numP);
-	//const int MaxGeneration=5000;
 	ASSERT(MaxGeneration>0);
 	//master
 	vector<double>meanFs;
@@ -318,27 +277,26 @@ int PDE(int processId,int numProcess,Function*f,vector<double>&bestX,double &bes
 			for(int i=1;i<=NumAlgorithm;i++){
 				MPI_Recv(&meanFs[i-1],1,MPI_DOUBLE,i,TAG,MPI_COMM_WORLD,&status);
 			}
-			//cout<<"Master:end recv meanFs"<<endl;
 			//build migrateMap.
 			for(int i=0;i<NumAlgorithm;i++){
 				migrateMap[i][i]=0;
 				for(int j=i+1;j<NumAlgorithm;j++){
 					if(drand()<Pmigrate){
 						if(f->isFBetter(meanFs[i],meanFs[j])){
-							//i is better than j.
 							if(popSizes[j]<=MinPopSize){
-								migrateMap[i][j]=0;//send to j.
+								migrateMap[i][j]=0;
 							}else{
-								migrateMap[i][j]=-1;//recve from j;
+							//i is better than j.
+								migrateMap[i][j]=-1;//recve from j, j->i
 								popSizes[i]++;
 								popSizes[j]--;
 							}
 						}else{
-							//j is better than i
 							if(popSizes[i]<=MinPopSize){
-								migrateMap[i][j]=0;//send to j.
+								migrateMap[i][j]=0;
 							}else{
-								migrateMap[i][j]=1;//send to j.
+							//j is better than i
+								migrateMap[i][j]=1;//send to j. i->i
 								popSizes[i]--;
 								popSizes[j]++;
 							}
@@ -443,15 +401,19 @@ vector<double> runSerialDE(DE &de,Function*f,int maxRun){
 	return results;
 }
 
-
 //int old_main(int argc,char *argv[]){
 int main(int argc,char *argv[]){
 	srand(time(NULL));
+	//parse the setting.
+	SettingParser setting("setting.json");
+	char author[100];
+	char name[100];
+	setting.getAuthorInfo("Author",author);
+	setting.getAuthorInfo("Name",name);
 	const int maxRun=30;
 	const int numDim=30;
 	const int numP=50;
-	cec14_test_func();
-	FunctionFactory &funGenerator=FunctionFactory::Instance(numDim);
+	FunctionFactoryMy &funGenerator=FunctionFactoryMy::Instance(numDim);
 	const int numTestFunction=funGenerator.getNumFunction();
 #if ALGORITHM==4 
 	int id,idSize;
@@ -474,7 +436,6 @@ int main(int argc,char *argv[]){
 	}
 	if(id==0){
 		Tic::tic("end");
-		cout<<"end."<<endl;
 		cout<<endl;
 	}
 	MPI_Finalize();
@@ -495,7 +456,6 @@ int main(int argc,char *argv[]){
 		//}
 	}
 	Tic::tic("end");
-	cout<<"end."<<endl;
 #endif
 	return 0;
 }
