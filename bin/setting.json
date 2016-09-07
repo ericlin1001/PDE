@@ -1,0 +1,16 @@
+{
+	"AuthorInfo":{
+		"Author":"Eric Lin",
+			"Email":"nameljh1001@gmail.com"
+	},
+		"Name":"DMDE",
+		"F":0.5,
+		"CR":0.9,
+		"NumDim":30,
+		"MaxRun":30,
+		"MaxFEs":100000,
+		"PopSize":100,
+		"NumSubPop":4,
+		"NumGenPerComm":5,
+		"Range":[[-1.0,1.0],[-1.0,1.0]]
+}

@@ -2,6 +2,7 @@ outputPath=../output
 all:runDEs output
 runDEs:PDE
 	echo 'Run Start:'`date` > time.txt
+	cp ../src/setting.json ./
 	mpirun -np 5 ./PDE > pde.txt
 	./DE1 > de1.txt
 	./DE2 > de2.txt
