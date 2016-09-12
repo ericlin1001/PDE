@@ -1,3 +1,3 @@
 all:*
-	mpic++ -DALGORITHM=4 *.cpp
-	mpirun -n 5 ./a.out
+	mpic++.mpich -DALGORITHM=4 *.cpp
+	mpirun.mpich -n 5 ./a.out
